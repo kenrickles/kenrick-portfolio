@@ -13,20 +13,26 @@ const socials = [
 
 export default function Hero() {
   return (
-    <section id="hero" className="pt-32 md:pt-40 pb-20 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-40">
-        <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-accent-purple/20 blur-3xl" />
-        <div className="absolute top-40 -left-24 h-72 w-72 rounded-full bg-accent-cyan/20 blur-3xl" />
+    <section id="hero" className="pt-32 md:pt-40 pb-24 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-60">
+        <div className="absolute -top-32 -right-20 h-80 w-80 rounded-full bg-accent-cyan/20 blur-[140px]" />
+        <div className="absolute top-48 -left-32 h-80 w-80 rounded-full bg-accent-pink/20 blur-[160px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative">
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-6 relative cosmic-grid">
+        <div className="absolute -top-16 right-16 orbit-ring h-40 w-40" />
+        <div className="absolute top-12 right-48 orbit-ring h-24 w-24" />
+        <span className="sparkle-dot" style={{ top: '18%', left: '6%' }} />
+        <span className="sparkle-dot" style={{ top: '30%', right: '18%' }} />
+        <span className="sparkle-dot" style={{ bottom: '20%', left: '38%' }} />
+
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
           <div>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-sm uppercase tracking-[0.3em] text-dark-400"
+              className="text-xs uppercase tracking-[0.5em] text-dark-400"
             >
               Protocol Engineer · Galaxy (Singapore)
             </motion.p>
@@ -34,7 +40,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-6xl font-bold text-white mt-4 leading-tight"
+              className="text-4xl md:text-6xl font-semibold text-white mt-4 leading-tight font-display"
             >
               Kenrick Tan<br />
               <span className="gradient-text">Protocol Engineer · DevSecOps · Platform</span>
@@ -106,13 +112,13 @@ export default function Hero() {
           >
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="relative h-20 w-20 rounded-2xl overflow-hidden ring-2 ring-white/10">
+                <div className="relative h-24 w-24 rounded-3xl overflow-hidden ring-2 ring-white/10">
                   <Image
                     src="/kenrick.jpg"
                     alt="Kenrick Tan"
                     fill
                     className="object-cover"
-                    sizes="80px"
+                    sizes="96px"
                     priority
                   />
                 </div>

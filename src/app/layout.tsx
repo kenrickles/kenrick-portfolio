@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
+import { Bricolage_Grotesque, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
+
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
+
+const body = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
 
 export const metadata: Metadata = {
   title: "Kenrick | Protocol Engineer",
@@ -25,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="antialiased noise-overlay starfield">
+      <body className={`${display.variable} ${body.variable} antialiased noise-overlay starfield`}>
         {children}
       </body>
     </html>
