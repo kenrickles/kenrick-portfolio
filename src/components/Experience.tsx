@@ -101,7 +101,7 @@ export default function Experience() {
         />
 
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10">
-          <div className="relative glass-card rounded-[32px] p-8 overflow-hidden">
+          <div className="relative glass-card rounded-[32px] p-8 overflow-hidden min-h-[460px] md:min-h-[520px] constellation-map">
             <div className="absolute inset-0 constellation-bg opacity-60" />
             <svg
               viewBox="0 0 100 100"
@@ -134,6 +134,7 @@ export default function Experience() {
                   onClick={() => setActiveId(experience.id)}
                   className={`constellation-node ${isActive ? 'is-active' : ''}`}
                   style={{ left: `${experience.x}%`, top: `${experience.y}%` }}
+                  aria-label={`${experience.role} at ${experience.company}`}
                 >
                   <span className="constellation-pulse" />
                   <span className="constellation-core" />
