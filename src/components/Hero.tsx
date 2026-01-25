@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Mail, Send } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, Send, Sparkles } from 'lucide-react';
 
 const socials = [
   { name: 'GitHub', href: 'https://github.com/kenrickles', icon: Github },
@@ -27,7 +28,7 @@ export default function Hero() {
               transition={{ duration: 0.6 }}
               className="text-sm uppercase tracking-[0.3em] text-dark-400"
             >
-              Senior DevSecOps Engineer · Partior (Singapore)
+              Protocol Engineer · Galaxy (Singapore)
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -35,8 +36,8 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl md:text-6xl font-bold text-white mt-4 leading-tight"
             >
-              Kenrick<br />
-              <span className="gradient-text">DevSecOps & Platform Engineering</span>
+              Kenrick Tan<br />
+              <span className="gradient-text">Protocol Engineer · DevSecOps · Platform</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -44,7 +45,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg md:text-xl text-dark-200 mt-6 max-w-2xl"
             >
-              I desire to be a T-shaped problem solver and believe in paying it forward. Building secure cloud-native infrastructure, Kubernetes platforms, and developer automation for high-trust environments.
+              I build secure, high-trust platforms for blockchain and cloud-native teams — shipping reliable systems, playful tooling, and a bit of cosmic calm under pressure.
             </motion.p>
 
             <motion.div
@@ -53,10 +54,10 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-wrap gap-3 mt-8"
             >
+              <span className="px-4 py-2 rounded-full glass text-sm text-white">Protocol Engineering</span>
               <span className="px-4 py-2 rounded-full glass text-sm text-white">CKA Certified</span>
               <span className="px-4 py-2 rounded-full glass text-sm text-white">Kubernetes</span>
               <span className="px-4 py-2 rounded-full glass text-sm text-white">DevSecOps</span>
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">Blockchain Infrastructure</span>
             </motion.div>
 
             <motion.div
@@ -104,19 +105,36 @@ export default function Hero() {
             className="glass-card p-8 rounded-3xl gradient-border"
           >
             <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="relative h-20 w-20 rounded-2xl overflow-hidden ring-2 ring-white/10">
+                  <Image
+                    src="/kenrick.jpg"
+                    alt="Kenrick Tan"
+                    fill
+                    className="object-cover"
+                    sizes="80px"
+                    priority
+                  />
+                </div>
+                <div>
+                  <p className="text-dark-400 text-sm">Currently at</p>
+                  <h3 className="text-2xl font-semibold text-white mt-1">Galaxy · Protocol Engineer</h3>
+                  <p className="text-dark-300 text-sm">Singapore · Full-time</p>
+                </div>
+              </div>
               <div>
                 <p className="text-dark-400 text-sm">Current Focus</p>
                 <h3 className="text-2xl font-semibold text-white mt-2">Secure, scalable blockchain & cloud platforms</h3>
               </div>
               <div className="space-y-4 text-dark-200">
-                <p>• GoQuorum & Tessera Kubernetes deployments</p>
-                <p>• Helm chart distribution pipelines</p>
-                <p>• HashiCorp Vault + External Secrets Operator</p>
-                <p>• End-to-end integration testing & release readiness</p>
+                <p>• Protocol hardening & release safety</p>
+                <p>• Kubernetes platform reliability</p>
+                <p>• DevSecOps automation & developer experience</p>
+                <p>• Security-by-default deployment pipelines</p>
               </div>
               <div className="flex items-center gap-3 text-dark-300 text-sm">
-                <ArrowDown size={16} className="animate-bounce" />
-                Scroll to explore
+                <Sparkles size={16} className="animate-pulse" />
+                Cosmic systems, calm ops
               </div>
             </div>
           </motion.div>

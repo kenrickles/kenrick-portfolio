@@ -6,9 +6,19 @@ import { GraduationCap } from 'lucide-react';
 
 const education = [
   {
-    title: 'Add your education details',
-    subtitle: 'Degree, institution, and years attended',
-    description: 'Include coursework, honors, or thesis highlights you want to showcase.',
+    title: 'Software Engineering Bootcamp · Rocket Academy',
+    subtitle: 'Singapore · Sep 2020 – Apr 2020',
+    description: 'Hands-on training in front-end, backend apps, and data structures/algorithms.',
+  },
+  {
+    title: 'Bachelor of Arts, Double Major · Singapore Management University',
+    subtitle: 'Singapore · Aug 2015 – Jan 2020',
+    description: 'High Merit in Psychology and Corporate Communications.',
+  },
+  {
+    title: 'Exchange Program · IE University',
+    subtitle: 'Segovia, Spain · Jan 2018 – May 2018',
+    description: 'International study program focused on global business and communication.',
   },
 ];
 

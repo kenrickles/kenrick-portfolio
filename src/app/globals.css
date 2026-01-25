@@ -16,7 +16,9 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #0a0a0f;
+  background: radial-gradient(circle at top, rgba(102, 126, 234, 0.15), transparent 45%),
+    radial-gradient(circle at 20% 20%, rgba(79, 172, 254, 0.12), transparent 40%),
+    #0a0a0f;
   color: #e4e4e7;
 }
 
@@ -105,4 +107,19 @@ section {
   opacity: 0.02;
   pointer-events: none;
   z-index: 1000;
+}
+
+.starfield::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, rgba(255, 255, 255, 0.35), transparent 50%),
+    radial-gradient(1px 1px at 60% 30%, rgba(255, 255, 255, 0.3), transparent 50%),
+    radial-gradient(1px 1px at 80% 70%, rgba(255, 255, 255, 0.25), transparent 50%),
+    radial-gradient(1px 1px at 25% 80%, rgba(255, 255, 255, 0.2), transparent 50%),
+    radial-gradient(1px 1px at 45% 55%, rgba(255, 255, 255, 0.2), transparent 50%);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
 }

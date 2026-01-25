@@ -6,8 +6,9 @@ import { BadgeCheck } from 'lucide-react';
 
 const certifications = [
   {
-    name: 'Certified Kubernetes Administrator (CKA)',
-    summary: 'Validated expertise in Kubernetes administration and operations.',
+    name: 'Certified Kubernetes Administrator (CKA) · Linux Foundation',
+    summary: 'Singapore · Sep 2021',
+    href: 'https://www.credly.com/badges/0d7f4c1e-8c59-4aec-8a43-e4400e0d2079?source=linked_in_profile',
   },
 ];
 
@@ -36,6 +37,16 @@ export default function Certifications() {
               <div>
                 <h3 className="text-lg font-semibold text-white">{cert.name}</h3>
                 <p className="text-dark-300 mt-2">{cert.summary}</p>
+                {cert.href && (
+                  <a
+                    href={cert.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-accent-cyan mt-3"
+                  >
+                    Verify certification
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}

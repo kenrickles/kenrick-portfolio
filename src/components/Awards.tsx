@@ -6,8 +6,12 @@ import { Trophy } from 'lucide-react';
 
 const awards = [
   {
-    title: 'Add awards or recognition',
-    description: 'Highlight notable achievements, leadership awards, or community recognition.',
+    title: 'Ho See Beng Scholarship · Singapore Management University',
+    description: 'Recipient, bond-free scholarship (SMU-administered).',
+  },
+  {
+    title: 'National Service · Criminal Investigation Department',
+    description: 'Grade A (Top 10% of cohort), CID Director Awards, and Commissioner of Police Commendation.',
   },
 ];
 

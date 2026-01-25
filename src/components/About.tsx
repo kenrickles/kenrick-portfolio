@@ -28,7 +28,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
           title="About"
-          subtitle="Senior DevSecOps Engineer at Partior in Singapore. Passionate about resilient infrastructure, automation, and paying it forward."
+          subtitle="Protocol Engineer at Galaxy in Singapore. Passionate about resilient infrastructure, automation, and paying it forward."
         />
 
         <div className="grid lg:grid-cols-2 gap-10">
@@ -40,10 +40,10 @@ export default function About() {
             className="glass-card rounded-3xl p-8"
           >
             <p className="text-dark-200 leading-relaxed text-lg">
-              Kenrick has built a career spanning financial services, product, and cloud engineering. Today he specializes in delivering secure Kubernetes platforms and blockchain infrastructure, working closely with clients to ensure high-trust deployments and reliable release cycles.
+              Kenrick has built a career spanning financial services, product, and cloud engineering. Today he focuses on protocol engineering and secure Kubernetes platforms, helping teams ship blockchain infrastructure with confidence and a little bit of fun.
             </p>
             <p className="text-dark-200 leading-relaxed text-lg mt-6">
-              He thrives on cross-functional collaboration, pairing hands-on engineering with thoughtful documentation, onboarding experience, and operational excellence. The goal: reduce friction, boost reliability, and empower teams to deliver with confidence.
+              He thrives on cross-functional collaboration, pairing hands-on engineering with playful experimentation, clear documentation, and operational excellence. The goal: reduce friction, boost reliability, and empower teams to deliver with confidence.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <span className="px-4 py-2 rounded-full glass text-sm text-white">DevSecOps</span>
@@ -51,6 +51,7 @@ export default function About() {
               <span className="px-4 py-2 rounded-full glass text-sm text-white">Helm</span>
               <span className="px-4 py-2 rounded-full glass text-sm text-white">Vault</span>
               <span className="px-4 py-2 rounded-full glass text-sm text-white">CI/CD</span>
+              <span className="px-4 py-2 rounded-full glass text-sm text-white">Scripting</span>
             </div>
           </motion.div>
 
