@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Mail, Send, Sparkles } from 'lucide-react';
+import { Github, Linkedin, Mail, Send, Sparkles } from 'lucide-react';
 
 const socials = [
   { name: 'GitHub', href: 'https://github.com/kenrickles', icon: Github },
