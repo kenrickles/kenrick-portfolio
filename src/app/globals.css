@@ -151,6 +151,22 @@ section {
   box-shadow: 0 0 40px rgba(94, 234, 212, 0.15);
 }
 
+.parallax-card {
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+.parallax-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.18), transparent 55%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .sparkle-dot {
   position: absolute;
   width: 6px;

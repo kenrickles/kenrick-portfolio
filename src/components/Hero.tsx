@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { Github, Linkedin, Mail, Send, Sparkles } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 const socials = [
   { name: 'GitHub', href: 'https://github.com/kenrickles', icon: Github },
@@ -12,6 +13,41 @@ const socials = [
 ];
 
 export default function Hero() {
+  const [canHover, setCanHover] = useState(false);
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springX = useSpring(rotateX, { stiffness: 120, damping: 18 });
+  const springY = useSpring(rotateY, { stiffness: 120, damping: 18 });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setCanHover(media.matches);
+    const handler = (event: MediaQueryListEvent) => setCanHover(event.matches);
+    media.addEventListener('change', handler);
+    return () => media.removeEventListener('change', handler);
+  }, []);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!canHover) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const xPercent = x / rect.width;
+    const yPercent = y / rect.height;
+    const rotateXValue = (0.5 - yPercent) * 12;
+    const rotateYValue = (xPercent - 0.5) * 12;
+    rotateX.set(rotateXValue);
+    rotateY.set(rotateYValue);
+    event.currentTarget.style.setProperty('--mx', `${xPercent * 100}%`);
+    event.currentTarget.style.setProperty('--my', `${yPercent * 100}%`);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
   return (
     <section id="hero" className="pt-32 md:pt-40 pb-24 relative overflow-hidden">
       <div className="absolute inset-0 opacity-60">
@@ -108,7 +144,10 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass-card p-8 rounded-3xl gradient-border"
+            className="glass-card p-8 rounded-3xl gradient-border parallax-card"
+            style={canHover ? { rotateX: springX, rotateY: springY } : undefined}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
           >
             <div className="space-y-6">
               <div className="flex items-center gap-4">
