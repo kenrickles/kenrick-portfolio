@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { Github, Linkedin, Mail, Send, Sparkles } from 'lucide-react';
+import { Github, Linkedin, Mail, Send } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -22,8 +22,6 @@ export default function Hero() {
   const subtitleRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
-  const glowOneRef = useRef<HTMLDivElement | null>(null);
-  const glowTwoRef = useRef<HTMLDivElement | null>(null);
 
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
@@ -56,12 +54,10 @@ export default function Hero() {
       });
 
       timeline
-        .fromTo(titleRef.current, { y: 0, opacity: 1 }, { y: -40, opacity: 0.6, ease: 'none' }, 0)
-        .fromTo(subtitleRef.current, { y: 0, opacity: 1 }, { y: -20, opacity: 0.7, ease: 'none' }, 0)
-        .fromTo(ctaRef.current, { y: 0, opacity: 1 }, { y: -12, opacity: 0.8, ease: 'none' }, 0)
-        .fromTo(cardRef.current, { y: 0, scale: 1 }, { y: -24, scale: 0.98, ease: 'none' }, 0)
-        .fromTo(glowOneRef.current, { y: 0, opacity: 0.7 }, { y: -40, opacity: 0.4, ease: 'none' }, 0)
-        .fromTo(glowTwoRef.current, { y: 0, opacity: 0.7 }, { y: 20, opacity: 0.5, ease: 'none' }, 0);
+        .fromTo(titleRef.current, { y: 0, opacity: 1 }, { y: -30, opacity: 0.7, ease: 'none' }, 0)
+        .fromTo(subtitleRef.current, { y: 0, opacity: 1 }, { y: -18, opacity: 0.8, ease: 'none' }, 0)
+        .fromTo(ctaRef.current, { y: 0, opacity: 1 }, { y: -10, opacity: 0.9, ease: 'none' }, 0)
+        .fromTo(cardRef.current, { y: 0 }, { y: -16, ease: 'none' }, 0);
     }, sectionRef);
 
     return () => ctx.revert();
@@ -74,8 +70,8 @@ export default function Hero() {
     const y = event.clientY - rect.top;
     const xPercent = x / rect.width;
     const yPercent = y / rect.height;
-    const rotateXValue = (0.5 - yPercent) * 12;
-    const rotateYValue = (xPercent - 0.5) * 12;
+    const rotateXValue = (0.5 - yPercent) * 8;
+    const rotateYValue = (xPercent - 0.5) * 8;
     rotateX.set(rotateXValue);
     rotateY.set(rotateYValue);
     event.currentTarget.style.setProperty('--mx', `${xPercent * 100}%`);
@@ -88,82 +84,65 @@ export default function Hero() {
   };
 
   return (
-    <section ref={sectionRef} id="hero" className="pt-32 md:pt-40 pb-24 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-60">
-        <div ref={glowOneRef} className="absolute -top-32 -right-20 h-80 w-80 rounded-full bg-accent-teal/20 blur-[140px]" />
-        <div ref={glowTwoRef} className="absolute top-48 -left-32 h-80 w-80 rounded-full bg-accent-sand/20 blur-[160px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 relative cosmic-grid">
-        <div className="absolute -top-16 right-16 orbit-ring h-40 w-40" />
-        <div className="absolute top-12 right-48 orbit-ring h-24 w-24" />
-        <span className="sparkle-dot" style={{ top: '18%', left: '6%' }} />
-        <span className="sparkle-dot" style={{ top: '30%', right: '18%' }} />
-        <span className="sparkle-dot" style={{ bottom: '20%', left: '38%' }} />
-
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+    <section ref={sectionRef} id="hero" className="pt-32 md:pt-36 pb-20 border-b-2 border-[color:var(--border)]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
           <div>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-xs uppercase tracking-[0.5em] text-dark-400"
-            >
-              Protocol Engineer · Galaxy (Singapore)
-            </motion.p>
+            <p className="text-xs uppercase tracking-[0.5em] text-[color:var(--muted)]">Protocol Engineer · Galaxy</p>
             <motion.h1
               ref={titleRef}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-6xl font-semibold text-white mt-4 leading-tight font-display"
+              transition={{ duration: 0.6 }}
+              className="text-5xl md:text-7xl font-black uppercase leading-[1.05] mt-6"
             >
-              Kenrick Tan<br />
-              <span className="gradient-text">Protocol Engineer · DevSecOps · Platform</span>
+              Kenrick Tan
             </motion.h1>
             <motion.p
               ref={subtitleRef}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-dark-200 mt-6 max-w-2xl"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-lg md:text-2xl text-[color:var(--muted)] mt-6 max-w-2xl"
             >
-              I build secure, high-trust platforms for blockchain and cloud-native teams — shipping reliable systems, playful tooling, and a bit of cosmic calm under pressure.
+              I design release‑safe systems for blockchain and cloud platforms — bold, reliable, and engineered for calm operations.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap gap-3 mt-8"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8 flex flex-wrap gap-3"
             >
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">Protocol Engineering</span>
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">CKA Certified</span>
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">Kubernetes</span>
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">DevSecOps</span>
+              {['Protocol', 'DevSecOps', 'Kubernetes', 'Platform'].map((item) => (
+                <span key={item} className="px-4 py-2 border-2 border-[color:var(--border)] text-xs uppercase tracking-[0.3em]">
+                  {item}
+                </span>
+              ))}
             </motion.div>
 
             <motion.div
               ref={ctaRef}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4 mt-10"
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-10 flex flex-wrap gap-4"
             >
-              <a href="#experience" className="px-6 py-3 rounded-full bg-white text-dark-950 font-medium hover:bg-dark-100 transition-colors">
-                View Experience
+              <a
+                href="#projects"
+                className="px-6 py-3 border-2 border-[color:var(--border)] bg-[color:var(--accent)] text-black font-semibold uppercase tracking-[0.2em]"
+              >
+                View Systems
               </a>
-              <a href="#contact" className="px-6 py-3 rounded-full glass text-white font-medium glow-hover transition-shadow">
-                Let&apos;s Connect
+              <a
+                href="#contact"
+                className="px-6 py-3 border-2 border-[color:var(--border)] uppercase tracking-[0.2em]"
+              >
+                Contact
               </a>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex items-center gap-4 mt-10"
-            >
+            <div className="mt-10 flex items-center gap-3">
               {socials.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -172,59 +151,49 @@ export default function Hero() {
                     href={social.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="h-10 w-10 rounded-full glass flex items-center justify-center text-dark-200 hover:text-white transition-colors"
+                    className="h-10 w-10 border-2 border-[color:var(--border)] flex items-center justify-center"
                     aria-label={social.name}
                   >
                     <Icon size={18} />
                   </a>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
 
           <div className="space-y-6">
             <motion.div
               ref={cardRef}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="glass-card p-8 rounded-3xl gradient-border parallax-card"
+              className="glass-card p-6"
               style={canHover ? { rotateX: springX, rotateY: springY } : undefined}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="relative h-24 w-24 rounded-3xl overflow-hidden ring-2 ring-white/10">
-                    <Image
-                      src="/kenrick.jpg"
-                      alt="Kenrick Tan"
-                      fill
-                      className="object-cover"
-                      sizes="96px"
-                      priority
-                    />
-                  </div>
-                  <div>
-                    <p className="text-dark-400 text-sm">Currently at</p>
-                    <h3 className="text-2xl font-semibold text-white mt-1">Galaxy · Protocol Engineer</h3>
-                    <p className="text-dark-300 text-sm">Singapore · Full-time</p>
-                  </div>
+              <div className="flex items-center gap-4">
+                <div className="relative h-20 w-20 border-2 border-[color:var(--border)]">
+                  <Image
+                    src="/kenrick.jpg"
+                    alt="Kenrick Tan"
+                    fill
+                    className="object-cover"
+                    sizes="80px"
+                    priority
+                  />
                 </div>
                 <div>
-                  <p className="text-dark-400 text-sm">Current Focus</p>
-                  <h3 className="text-2xl font-semibold text-white mt-2">Secure, scalable blockchain & cloud platforms</h3>
+                  <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Currently</p>
+                  <h3 className="text-2xl font-semibold mt-2">Galaxy · Protocol</h3>
+                  <p className="text-sm text-[color:var(--muted)]">Singapore</p>
                 </div>
-                <div className="space-y-4 text-dark-200">
-                  <p>• Protocol hardening & release safety</p>
-                  <p>• Kubernetes platform reliability</p>
-                  <p>• DevSecOps automation & developer experience</p>
-                  <p>• Security-by-default deployment pipelines</p>
-                </div>
-                <div className="flex items-center gap-3 text-dark-300 text-sm">
-                  <Sparkles size={16} className="animate-pulse" />
-                  Cosmic systems, calm ops
-                </div>
+              </div>
+
+              <div className="mt-6 space-y-3 text-[color:var(--muted)]">
+                <p>• Release readiness and rollback safety</p>
+                <p>• Secure Kubernetes platform automation</p>
+                <p>• DevSecOps tooling + developer experience</p>
               </div>
             </motion.div>
 

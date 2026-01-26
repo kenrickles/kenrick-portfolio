@@ -20,17 +20,17 @@ export default function ArchitectureDiagram({
   const activeNode = nodes.find((node) => node.id === activeId) ?? nodes[0];
 
   return (
-    <div className="glass-card rounded-3xl p-8">
+    <div className="glass-card p-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-dark-400">Architecture</p>
-          <h3 className="text-2xl font-semibold text-white mt-2">{title}</h3>
+          <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Architecture</p>
+          <h3 className="text-2xl font-semibold mt-2">{title}</h3>
         </div>
-        <div className="text-sm text-dark-300">Tap a node to explore</div>
+        <div className="text-sm text-[color:var(--muted)]">Tap a node to explore</div>
       </div>
 
       <div className="mt-8 grid lg:grid-cols-[1.1fr_0.9fr] gap-6 items-stretch">
-        <div className="relative min-h-[320px] rounded-2xl bg-[rgba(10,14,26,0.6)] border border-white/10 overflow-hidden">
+        <div className="relative min-h-[320px] border-2 border-[color:var(--border)] bg-[color:var(--surface-2)] overflow-hidden">
           <svg
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
@@ -49,8 +49,8 @@ export default function ArchitectureDiagram({
                   y1={from.y}
                   x2={to.x}
                   y2={to.y}
-                  stroke={isActive ? 'rgba(94, 234, 212, 0.8)' : 'rgba(148, 163, 184, 0.25)'}
-                  strokeWidth="0.4"
+                  stroke={isActive ? 'var(--accent)' : 'var(--border)'}
+                  strokeWidth="0.5"
                   strokeDasharray="2 2"
                 />
               );
@@ -64,15 +64,15 @@ export default function ArchitectureDiagram({
                 key={node.id}
                 type="button"
                 onClick={() => setActiveId(node.id)}
-                className={`constellation-node ${isActive ? 'is-active' : ''}`}
+                className={`absolute -translate-x-1/2 -translate-y-1/2 text-left border-2 px-3 py-2 text-xs uppercase tracking-[0.3em] ${
+                  isActive
+                    ? 'bg-[color:var(--accent)] text-black border-[color:var(--accent)]'
+                    : 'bg-[color:var(--surface)] border-[color:var(--border)]'
+                }`}
                 style={{ left: `${node.x}%`, top: `${node.y}%` }}
                 aria-label={node.label}
               >
-                <span className="constellation-pulse" />
-                <span className="constellation-core" />
-                <span className="constellation-label">
-                  <span className="text-xs uppercase tracking-[0.3em] text-dark-400">{node.label}</span>
-                </span>
+                {node.label}
               </button>
             );
           })}
@@ -83,21 +83,21 @@ export default function ArchitectureDiagram({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="holo-card rounded-2xl p-6"
+          className="glass-card p-6"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-dark-400">Focused node</p>
-          <h4 className="text-2xl font-semibold text-white mt-3">{activeNode?.label}</h4>
-          <p className="text-dark-300 mt-4">{activeNode?.detail}</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Focused node</p>
+          <h4 className="text-2xl font-semibold mt-3">{activeNode?.label}</h4>
+          <p className="text-[color:var(--muted)] mt-4">{activeNode?.detail}</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {nodes.map((node) => (
               <button
                 key={node.id}
                 type="button"
                 onClick={() => setActiveId(node.id)}
-                className={`px-3 py-1 rounded-full text-xs transition ${
+                className={`px-3 py-2 border-2 text-xs uppercase tracking-[0.3em] transition ${
                   node.id === activeId
-                    ? 'bg-white text-dark-950'
-                    : 'glass text-white hover:opacity-80'
+                    ? 'bg-[color:var(--accent)] text-black border-[color:var(--accent)]'
+                    : 'border-[color:var(--border)]'
                 }`}
               >
                 {node.label}

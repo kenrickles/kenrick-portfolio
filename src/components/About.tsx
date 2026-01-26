@@ -2,83 +2,67 @@
 
 import { motion } from 'framer-motion';
 import SectionHeading from './SectionHeading';
-import { Sparkles, Shield, Users } from 'lucide-react';
 
-const highlights = [
+const pillars = [
   {
-    title: 'Security-minded engineering',
-    description: 'DevSecOps mindset with defense-in-depth, mTLS, and secret management best practices.',
-    icon: Shield,
+    title: 'Security baked in',
+    description: 'Defense‑in‑depth, mTLS, policy‑as‑code, and guardrails that ship by default.',
   },
   {
-    title: 'Platform & automation',
-    description: 'Builds pipelines and tooling that reduce onboarding friction and engineer hours.',
-    icon: Sparkles,
+    title: 'Reliability at scale',
+    description: 'Release playbooks, canaries, and incident automation that keep teams calm.',
   },
   {
-    title: 'People-first leadership',
-    description: 'Experienced mentor and collaborator, translating between tech teams and stakeholders.',
-    icon: Users,
+    title: 'Platform craft',
+    description: 'Golden paths, dev tooling, and documentation that reduce onboarding friction.',
   },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-20">
+    <section id="about" className="py-20 border-b-2 border-[color:var(--border)]">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
-          title="About"
-          subtitle="Protocol Engineer at Galaxy in Singapore. Passionate about resilient infrastructure, automation, and paying it forward."
+          title="Manifesto"
+          subtitle="I build high‑trust platforms that move fast without breaking. The goal is simple: safe releases, confident teams, and systems that feel calm under pressure."
         />
 
-        <div className="grid lg:grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="glass-card rounded-3xl p-8"
+            className="glass-card p-8"
           >
-            <p className="text-dark-200 leading-relaxed text-lg">
-              Kenrick has built a career spanning financial services, product, and cloud engineering. Today he focuses on protocol engineering and secure Kubernetes platforms, helping teams ship blockchain infrastructure with confidence and a little bit of fun.
-            </p>
-            <p className="text-dark-200 leading-relaxed text-lg mt-6">
-              He thrives on cross-functional collaboration, pairing hands-on engineering with playful experimentation, clear documentation, and operational excellence. The goal: reduce friction, boost reliability, and empower teams to deliver with confidence.
+            <p className="text-lg text-[color:var(--muted)] leading-relaxed">
+              Kenrick’s work sits at the intersection of protocol engineering, DevSecOps, and platform reliability. He
+              translates chaos into repeatable systems — building release safety, security automation, and a developer
+              experience that teams want to use.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">DevSecOps</span>
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">Kubernetes</span>
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">Helm</span>
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">Vault</span>
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">CI/CD</span>
-              <span className="px-4 py-2 rounded-full glass text-sm text-white">Scripting</span>
+              {['DevSecOps', 'Kubernetes', 'Vault', 'CI/CD', 'SRE'].map((item) => (
+                <span key={item} className="px-3 py-2 border-2 border-[color:var(--border)] text-xs uppercase tracking-[0.3em]">
+                  {item}
+                </span>
+              ))}
             </div>
           </motion.div>
 
           <div className="space-y-6">
-            {highlights.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="glass-card rounded-2xl p-6"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-full glass flex items-center justify-center text-white">
-                      <Icon size={22} />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                      <p className="text-dark-300 mt-2">{item.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {pillars.map((pillar, index) => (
+              <motion.div
+                key={pillar.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="holo-card p-6"
+              >
+                <h3 className="text-xl font-semibold">{pillar.title}</h3>
+                <p className="text-[color:var(--muted)] mt-3">{pillar.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

@@ -35,8 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${display.variable} ${body.variable} antialiased noise-overlay starfield`}>
+    <html lang="en" className="scroll-smooth" data-theme="dark">
+      <body className={`${display.variable} ${body.variable} antialiased`}>
         {children}
       </body>
     </html>

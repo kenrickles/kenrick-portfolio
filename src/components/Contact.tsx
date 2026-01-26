@@ -33,28 +33,29 @@ const contactLinks = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="contact" className="py-20 border-b-2 border-[color:var(--border)]">
+      <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
           title="Contact"
-          subtitle="Let’s connect on DevSecOps, platform engineering, or your next build."
+          subtitle="Let’s build secure systems, sharper pipelines, or your next platform evolution."
         />
 
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="glass-card rounded-3xl p-8"
+            transition={{ duration: 0.4 }}
+            className="glass-card p-8"
           >
-            <h3 className="text-2xl font-semibold text-white">Say hello</h3>
-            <p className="text-dark-300 mt-3">
-              Reach out for collaborations, advisory, or just to chat about secure infrastructure.
+            <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Inbox open</p>
+            <h3 className="text-3xl font-black mt-4">Let&apos;s talk</h3>
+            <p className="text-[color:var(--muted)] mt-4">
+              Advisory, platform strategy, or hard problems in production — I&apos;m in.
             </p>
             <a
               href="mailto:kenrickles@gmail.com"
-              className="inline-flex items-center gap-2 mt-6 px-6 py-3 rounded-full bg-white text-dark-950 font-medium hover:bg-dark-100 transition-colors"
+              className="inline-flex items-center gap-2 mt-6 px-6 py-3 border-2 border-[color:var(--border)] bg-[color:var(--accent)] text-black font-semibold uppercase tracking-[0.2em]"
             >
               <Mail size={18} />
               Email Kenrick
@@ -73,14 +74,14 @@ export default function Contact() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="glass-card rounded-2xl p-5 flex items-center justify-between hover:glow-hover transition-shadow"
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="glass-card p-5 flex items-center justify-between"
                 >
                   <div>
-                    <p className="text-sm text-dark-400">{link.label}</p>
-                    <p className="text-white font-medium mt-1">{link.value}</p>
+                    <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">{link.label}</p>
+                    <p className="font-semibold mt-2">{link.value}</p>
                   </div>
-                  <div className="h-10 w-10 rounded-full glass flex items-center justify-center text-white">
+                  <div className="h-10 w-10 border-2 border-[color:var(--border)] flex items-center justify-center">
                     <Icon size={18} />
                   </div>
                 </motion.a>

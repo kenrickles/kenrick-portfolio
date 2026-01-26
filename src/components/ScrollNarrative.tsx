@@ -72,7 +72,7 @@ export default function ScrollNarrative() {
   }, []);
 
   return (
-    <section id="mission" className="py-24 relative">
+    <section id="mission" className="py-20 border-b-2 border-[color:var(--border)]">
       <div className="max-w-7xl mx-auto px-6" ref={containerRef}>
         <SectionHeading
           title="Mission Timeline"
@@ -82,46 +82,45 @@ export default function ScrollNarrative() {
         <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
           <div className="relative h-full">
             <div className="sticky top-28 space-y-6">
-              <div className="glass-card rounded-3xl p-8">
-                <p className="text-xs uppercase tracking-[0.3em] text-dark-400">Live timeline</p>
-                <h3 className="text-3xl font-semibold text-white mt-3 font-display">Release mission control</h3>
-                <p className="text-dark-300 mt-4">
+              <div className="glass-card p-8">
+                <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Live timeline</p>
+                <h3 className="text-3xl font-black uppercase mt-3">Release mission control</h3>
+                <p className="text-[color:var(--muted)] mt-4">
                   Watch each milestone ignite as you scroll — every phase reinforced with guardrails and automation.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <span className="px-3 py-1 rounded-full glass text-xs text-white">Telemetry</span>
-                  <span className="px-3 py-1 rounded-full glass text-xs text-white">Canaries</span>
-                  <span className="px-3 py-1 rounded-full glass text-xs text-white">Rollback</span>
+                  {['Telemetry', 'Canaries', 'Rollback'].map((item) => (
+                    <span key={item} className="px-3 py-2 border-2 border-[color:var(--border)] text-xs uppercase tracking-[0.3em]">
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              <div className="glass-card rounded-3xl p-6">
+              <div className="glass-card p-6">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-[0.3em] text-dark-400">Progress</span>
-                  <span className="text-xs text-dark-300">Live</span>
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Progress</span>
+                  <span className="text-xs text-[color:var(--muted)]">Live</span>
                 </div>
-                <div className="mt-4 h-2 rounded-full bg-white/5 overflow-hidden">
-                  <div
-                    ref={progressRef}
-                    className="h-full bg-gradient-to-r from-accent-teal to-accent-sand"
-                  />
+                <div className="mt-4 h-2 border-2 border-[color:var(--border)]">
+                  <div ref={progressRef} className="h-full bg-[color:var(--accent)]" />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {steps.map((step, index) => (
               <div
                 key={step.title}
                 ref={(el) => {
                   if (el) cardsRef.current[index] = el;
                 }}
-                className="holo-card rounded-[28px] p-6"
+                className="glass-card p-6"
               >
-                <p className="text-xs uppercase tracking-[0.3em] text-dark-400">Phase {index + 1}</p>
-                <h4 className="text-2xl font-semibold text-white mt-3">{step.title}</h4>
-                <p className="text-dark-300 mt-4">{step.description}</p>
+                <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Phase {index + 1}</p>
+                <h4 className="text-2xl font-semibold mt-3">{step.title}</h4>
+                <p className="text-[color:var(--muted)] mt-4">{step.description}</p>
               </div>
             ))}
           </div>

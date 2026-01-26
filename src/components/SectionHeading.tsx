@@ -10,27 +10,36 @@ interface SectionHeadingProps {
 export default function SectionHeading({ title, subtitle }: SectionHeadingProps) {
   return (
     <div className="mb-10">
+      <motion.p
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className="text-xs uppercase tracking-[0.4em] text-[color:var(--muted)]"
+      >
+        Section
+      </motion.p>
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-3xl md:text-4xl font-semibold text-white font-display"
+        className="text-4xl md:text-5xl font-semibold text-[color:var(--fg)] font-display mt-3"
       >
         {title}
       </motion.h2>
       {subtitle && (
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-dark-200/90 mt-3 max-w-2xl"
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="text-base md:text-lg text-[color:var(--muted)] mt-4 max-w-2xl"
         >
           {subtitle}
         </motion.p>
       )}
-      <div className="mt-5 h-px w-20 bg-gradient-to-r from-accent-teal/70 via-accent-sand/60 to-transparent" />
+      <div className="mt-6 h-[3px] w-24 bg-[color:var(--accent)]" />
     </div>
   );
 }

@@ -3,14 +3,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { name: 'Home', href: '#hero' },
-  { name: 'About', href: '#about' },
+  { name: 'Manifesto', href: '#about' },
+  { name: 'Systems', href: '#projects' },
+  { name: 'Impact', href: '#impact' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Certifications', href: '#certifications' },
-  { name: 'Education', href: '#education' },
-  { name: 'Awards', href: '#awards' },
+  { name: 'Credentials', href: '#credentials' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -31,43 +32,46 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-4' : 'py-6'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b-2 border-[color:var(--border)] ${
+        isScrolled ? 'bg-[color:var(--bg)]/95 backdrop-blur py-3' : 'bg-[color:var(--bg)] py-4'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
         <motion.a
           href="#hero"
-          className="text-2xl font-bold gradient-text"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="text-xl md:text-2xl font-black uppercase tracking-[0.3em]"
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.98 }}
         >
           Kenrick
         </motion.a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link, index) => (
             <motion.a
               key={link.name}
               href={link.href}
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="text-dark-300 hover:text-white transition-colors text-sm font-medium"
+              transition={{ delay: index * 0.05 }}
+              className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)] hover:text-[color:var(--fg)] transition-colors"
             >
               {link.name}
             </motion.a>
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-white p-2"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden border-2 border-[color:var(--border)] p-2"
+          >
+            {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -77,7 +81,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass mt-4"
+            className="md:hidden border-t-2 border-[color:var(--border)] bg-[color:var(--bg)]"
           >
             <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -85,7 +89,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-dark-300 hover:text-white transition-colors py-2"
+                  className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)] hover:text-[color:var(--fg)] transition-colors py-2"
                 >
                   {link.name}
                 </a>

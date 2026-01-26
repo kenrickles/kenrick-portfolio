@@ -6,13 +6,9 @@ import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Impact from '@/components/Impact';
 import Projects from '@/components/Projects';
-import CaseStudies from '@/components/CaseStudies';
-import ScrollNarrative from '@/components/ScrollNarrative';
 import OpsTelemetry from '@/components/OpsTelemetry';
 import Experience from '@/components/Experience';
-import Certifications from '@/components/Certifications';
-import Education from '@/components/Education';
-import Awards from '@/components/Awards';
+import Credentials from '@/components/Credentials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -22,20 +18,16 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-dark-950"
+      className="min-h-screen"
     >
       <Navbar />
       <Hero />
       <About />
-      <Impact />
       <Projects />
-      <CaseStudies />
-      <ScrollNarrative />
+      <Impact />
       <OpsTelemetry />
       <Experience />
-      <Certifications />
-      <Education />
-      <Awards />
+      <Credentials />
       <Contact />
       <Footer />
     </motion.main>
