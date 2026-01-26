@@ -6,7 +6,7 @@ import { Github, Linkedin, Mail, Send, Sparkles } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SignatureRive from './SignatureRive';
+import SignatureMotion from './SignatureMotion';
 
 const socials = [
   { name: 'GitHub', href: 'https://github.com/kenrickles', icon: Github },
@@ -228,7 +228,7 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            <SignatureRive />
+            <SignatureMotion />
           </div>
         </div>
       </div>

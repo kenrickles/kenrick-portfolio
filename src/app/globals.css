@@ -385,6 +385,45 @@ section {
   box-shadow: 0 0 20px rgba(35, 213, 171, 0.35);
 }
 
+.signature-orb {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: radial-gradient(circle at 30% 30%, rgba(35, 213, 171, 0.2), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(242, 197, 124, 0.2), transparent 60%),
+    rgba(8, 12, 20, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: inset 0 0 20px rgba(15, 23, 42, 0.6), 0 12px 30px rgba(5, 8, 18, 0.45);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.signature-ring {
+  position: absolute;
+  inset: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(35, 213, 171, 0.4);
+  box-shadow: 0 0 18px rgba(35, 213, 171, 0.2);
+  animation: signature-orbit 6s linear infinite;
+}
+
+.signature-ring--slow {
+  inset: 16px;
+  border-color: rgba(242, 197, 124, 0.4);
+  animation-duration: 10s;
+  animation-direction: reverse;
+}
+
+.signature-core {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 18px rgba(35, 213, 171, 0.6);
+}
+
 @keyframes aurora {
   0%, 100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -401,6 +440,15 @@ section {
 }
 
 @keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes signature-orbit {
   0% {
     transform: rotate(0deg);
   }
