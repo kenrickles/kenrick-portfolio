@@ -42,7 +42,7 @@ export default function Certifications() {
                     href={cert.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-accent-cyan mt-3"
+                    className="inline-flex items-center gap-2 text-sm text-accent-teal mt-3"
                   >
                     Verify certification
                   </a>

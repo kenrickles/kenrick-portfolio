@@ -177,7 +177,7 @@ export default function Experience() {
             <ul className="mt-6 space-y-4 text-dark-200">
               {activeExperience.bullets.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-cyan" />
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-teal" />
                   <span>{bullet}</span>
                 </li>
               ))}

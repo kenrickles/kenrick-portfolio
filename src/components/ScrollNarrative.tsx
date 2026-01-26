@@ -94,7 +94,7 @@ export default function ScrollNarrative() {
                 </div>
                 <div className="mt-4 h-2 rounded-full bg-white/5 overflow-hidden">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-accent-cyan to-accent-purple"
+                    className="h-full bg-gradient-to-r from-accent-teal to-accent-sand"
                     style={{ width: progressHeight }}
                   />
                 </div>

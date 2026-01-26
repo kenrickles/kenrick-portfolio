@@ -93,7 +93,7 @@ export default function Impact() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="holo-card rounded-3xl p-6 relative overflow-hidden"
                 >
-                  <div className="absolute -top-12 -right-12 h-24 w-24 rounded-full bg-accent-cyan/20 blur-2xl" />
+                  <div className="absolute -top-12 -right-12 h-24 w-24 rounded-full bg-accent-teal/20 blur-2xl" />
                   <div className="flex items-center justify-between">
                     <AnimatedMetric value={metric.value} suffix={metric.suffix} />
                     <span className="h-12 w-12 rounded-2xl glass flex items-center justify-center text-white">
@@ -121,7 +121,7 @@ export default function Impact() {
               </div>
               {pillars.map((pillar) => (
                 <div key={pillar.title} className="flex items-start gap-4">
-                  <span className="mt-2 h-2 w-2 rounded-full bg-accent-cyan shadow-[0_0_12px_rgba(94,234,212,0.7)]" />
+                  <span className="mt-2 h-2 w-2 rounded-full bg-accent-teal shadow-[0_0_12px_rgba(35,213,171,0.6)]" />
                   <div>
                     <h4 className="text-lg text-white font-semibold">{pillar.title}</h4>
                     <p className="text-dark-300 mt-2">{pillar.description}</p>

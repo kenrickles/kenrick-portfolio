@@ -23,10 +23,10 @@ export default {
           950: '#0a0a0f',
         },
         accent: {
-          purple: '#667eea',
-          pink: '#764ba2',
-          coral: '#f5576c',
-          cyan: '#4facfe',
+          teal: '#23D5AB',
+          ocean: '#3BA7C8',
+          sand: '#F2C57C',
+          ember: '#F97360',
         }
       },
       fontFamily: {

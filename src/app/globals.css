@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --gradient-1: linear-gradient(135deg, #5b7cfa 0%, #8b5cf6 45%, #f472b6 100%);
-  --gradient-2: linear-gradient(135deg, #f59e0b 0%, #f43f5e 55%, #ec4899 100%);
-  --gradient-3: linear-gradient(135deg, #22d3ee 0%, #38bdf8 55%, #6366f1 100%);
+  --gradient-1: linear-gradient(135deg, #23d5ab 0%, #3ba7c8 50%, #f2c57c 100%);
+  --gradient-2: linear-gradient(135deg, #0f172a 0%, #1f2937 55%, #3f4c5f 100%);
+  --gradient-3: linear-gradient(135deg, #1f2937 0%, #0f172a 55%, #0b0f14 100%);
   --ink: #f8fafc;
-  --muted: #a3b3c7;
-  --glow: rgba(94, 234, 212, 0.25);
+  --muted: #98a2b3;
+  --glow: rgba(35, 213, 171, 0.25);
   --surface-1: rgba(12, 18, 32, 0.55);
   --surface-2: rgba(10, 14, 24, 0.75);
   --border-subtle: rgba(148, 163, 184, 0.18);
@@ -21,9 +21,9 @@
 body {
   font-family: var(--font-body), ui-serif, system-ui;
   color-scheme: dark;
-  background: radial-gradient(circle at 12% 12%, rgba(94, 234, 212, 0.18), transparent 42%),
-    radial-gradient(circle at 88% 18%, rgba(99, 102, 241, 0.2), transparent 48%),
-    radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.12), transparent 50%),
+  background: radial-gradient(circle at 12% 12%, rgba(35, 213, 171, 0.16), transparent 42%),
+    radial-gradient(circle at 88% 18%, rgba(59, 167, 200, 0.18), transparent 48%),
+    radial-gradient(circle at 50% 80%, rgba(242, 197, 124, 0.12), transparent 50%),
     #05070f;
   color: var(--ink);
 }
@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5 {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f5576c 100%);
+  background: linear-gradient(135deg, #23d5ab 0%, #3ba7c8 50%, #f2c57c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -75,11 +75,11 @@ h1, h2, h3, h4, h5 {
 
 /* Glow effects */
 .glow {
-  box-shadow: 0 0 40px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 0 40px rgba(35, 213, 171, 0.18);
 }
 
 .glow-hover:hover {
-  box-shadow: 0 0 60px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 0 60px rgba(35, 213, 171, 0.3);
 }
 
 /* Animated gradient border */
@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5 {
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #667eea, #764ba2, #f5576c);
+  background: linear-gradient(135deg, #23d5ab, #3ba7c8, #f2c57c);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -107,7 +107,7 @@ section {
 
 /* Timeline styles */
 .timeline-line {
-  background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, transparent 100%);
+  background: linear-gradient(180deg, #23d5ab 0%, #3ba7c8 50%, transparent 100%);
 }
 
 /* Noise overlay */
@@ -151,8 +151,8 @@ section {
 .orbit-ring {
   position: absolute;
   border-radius: 999px;
-  border: 1px solid rgba(94, 234, 212, 0.25);
-  box-shadow: 0 0 40px rgba(94, 234, 212, 0.15);
+  border: 1px solid rgba(35, 213, 171, 0.25);
+  box-shadow: 0 0 40px rgba(35, 213, 171, 0.15);
 }
 
 .parallax-card {
@@ -177,13 +177,13 @@ section {
   height: 6px;
   border-radius: 999px;
   background: rgba(148, 163, 184, 0.7);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 12px rgba(35, 213, 171, 0.45);
 }
 
 .constellation-bg {
-  background-image: radial-gradient(circle at 20% 20%, rgba(94, 234, 212, 0.12), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(59, 130, 246, 0.14), transparent 45%),
-    radial-gradient(circle at 40% 70%, rgba(236, 72, 153, 0.16), transparent 45%);
+  background-image: radial-gradient(circle at 20% 20%, rgba(35, 213, 171, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(59, 167, 200, 0.14), transparent 45%),
+    radial-gradient(circle at 40% 70%, rgba(242, 197, 124, 0.16), transparent 45%);
 }
 
 .constellation-line {
@@ -207,7 +207,7 @@ section {
   height: 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 18px rgba(94, 234, 212, 0.8), 0 0 40px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 18px rgba(35, 213, 171, 0.75), 0 0 40px rgba(59, 167, 200, 0.35);
   z-index: 2;
 }
 
@@ -216,7 +216,7 @@ section {
   width: 32px;
   height: 32px;
   border-radius: 999px;
-  border: 1px solid rgba(94, 234, 212, 0.4);
+  border: 1px solid rgba(35, 213, 171, 0.35);
   animation: pulse 4s ease-in-out infinite;
 }
 
@@ -237,17 +237,17 @@ section {
 .constellation-node.is-active .constellation-label {
   opacity: 1;
   transform: translateY(-2px);
-  border-color: rgba(94, 234, 212, 0.5);
+  border-color: rgba(35, 213, 171, 0.45);
   box-shadow: 0 16px 40px rgba(8, 12, 24, 0.55);
 }
 
 .constellation-node.is-active .constellation-core {
   background: #fff;
-  box-shadow: 0 0 25px rgba(94, 234, 212, 0.9), 0 0 60px rgba(236, 72, 153, 0.35);
+  box-shadow: 0 0 25px rgba(35, 213, 171, 0.85), 0 0 60px rgba(242, 197, 124, 0.3);
 }
 
 .constellation-node:focus-visible .constellation-label {
-  outline: 2px solid rgba(94, 234, 212, 0.6);
+  outline: 2px solid rgba(35, 213, 171, 0.55);
   outline-offset: 2px;
 }
 
@@ -282,9 +282,9 @@ section {
 .aurora {
   position: absolute;
   inset: -40% -20% 0;
-  background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.22), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.24), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(167, 139, 250, 0.18), transparent 45%);
+  background: radial-gradient(circle at 20% 20%, rgba(35, 213, 171, 0.2), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(59, 167, 200, 0.2), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(242, 197, 124, 0.18), transparent 45%);
   filter: blur(80px);
   opacity: 0.7;
   animation: aurora 18s ease-in-out infinite;
@@ -294,17 +294,17 @@ section {
 .aurora-sweep {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(94, 234, 212, 0.12), rgba(59, 130, 246, 0.05), rgba(236, 72, 153, 0.12));
+  background: linear-gradient(120deg, rgba(35, 213, 171, 0.12), rgba(59, 167, 200, 0.06), rgba(242, 197, 124, 0.12));
   background-size: 200% 200%;
   animation: gradient 12s ease infinite;
-  opacity: 0.55;
+  opacity: 0.5;
   pointer-events: none;
 }
 
 .radial-glow {
-  background: radial-gradient(circle at 20% 20%, rgba(94, 234, 212, 0.18), transparent 45%),
-    radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.15), transparent 40%),
-    radial-gradient(circle at 70% 80%, rgba(236, 72, 153, 0.18), transparent 45%);
+  background: radial-gradient(circle at 20% 20%, rgba(35, 213, 171, 0.18), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(59, 167, 200, 0.14), transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(242, 197, 124, 0.18), transparent 45%);
   opacity: 0.7;
 }
 
@@ -335,8 +335,8 @@ section {
   content: '';
   position: absolute;
   inset: -50% 0;
-  background: conic-gradient(from 180deg, rgba(94, 234, 212, 0.12), rgba(99, 102, 241, 0.16), rgba(236, 72, 153, 0.18), rgba(94, 234, 212, 0.12));
-  opacity: 0.2;
+  background: conic-gradient(from 180deg, rgba(35, 213, 171, 0.12), rgba(59, 167, 200, 0.16), rgba(242, 197, 124, 0.18), rgba(35, 213, 171, 0.12));
+  opacity: 0.18;
   mix-blend-mode: screen;
   animation: spin 22s linear infinite;
   pointer-events: none;
@@ -377,12 +377,12 @@ section {
   height: 42px;
   border-radius: 50%;
   background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(94, 234, 212, 0.5);
+  border: 1px solid rgba(35, 213, 171, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  box-shadow: 0 0 20px rgba(94, 234, 212, 0.35);
+  box-shadow: 0 0 20px rgba(35, 213, 171, 0.35);
 }
 
 @keyframes aurora {
@@ -410,7 +410,7 @@ section {
 }
 
 :focus-visible {
-  outline: 2px solid rgba(94, 234, 212, 0.55);
+  outline: 2px solid rgba(35, 213, 171, 0.55);
   outline-offset: 3px;
 }
 

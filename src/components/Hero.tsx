@@ -51,8 +51,8 @@ export default function Hero() {
   return (
     <section id="hero" className="pt-32 md:pt-40 pb-24 relative overflow-hidden">
       <div className="absolute inset-0 opacity-60">
-        <div className="absolute -top-32 -right-20 h-80 w-80 rounded-full bg-accent-cyan/20 blur-[140px]" />
-        <div className="absolute top-48 -left-32 h-80 w-80 rounded-full bg-accent-pink/20 blur-[160px]" />
+        <div className="absolute -top-32 -right-20 h-80 w-80 rounded-full bg-accent-teal/20 blur-[140px]" />
+        <div className="absolute top-48 -left-32 h-80 w-80 rounded-full bg-accent-sand/20 blur-[160px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative cosmic-grid">

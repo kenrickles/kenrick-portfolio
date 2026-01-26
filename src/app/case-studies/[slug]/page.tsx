@@ -53,7 +53,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             <ul className="mt-4 space-y-3 text-dark-200">
               {study.approach.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-cyan" />
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-teal" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -65,7 +65,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             <ul className="mt-4 space-y-3 text-dark-200">
               {study.outcomes.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-cyan" />
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-teal" />
                   <span>{item}</span>
                 </li>
               ))}

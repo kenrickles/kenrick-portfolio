@@ -30,7 +30,7 @@ export default function SectionHeading({ title, subtitle }: SectionHeadingProps)
           {subtitle}
         </motion.p>
       )}
-      <div className="mt-5 h-px w-20 bg-gradient-to-r from-accent-cyan/70 via-accent-purple/60 to-transparent" />
+      <div className="mt-5 h-px w-20 bg-gradient-to-r from-accent-teal/70 via-accent-sand/60 to-transparent" />
     </div>
   );
 }
