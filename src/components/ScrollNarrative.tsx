@@ -27,6 +27,33 @@ const steps = [
   },
 ];
 
+function StepCard({
+  index,
+  title,
+  description,
+  scrollYProgress,
+  total,
+}: {
+  index: number;
+  title: string;
+  description: string;
+  scrollYProgress: ReturnType<typeof useScroll>['scrollYProgress'];
+  total: number;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const opacity = useTransform(scrollYProgress, [start, end], [0.4, 1]);
+  const y = useTransform(scrollYProgress, [start, end], [20, 0]);
+
+  return (
+    <motion.div style={{ opacity, y }} className="holo-card rounded-[28px] p-6">
+      <p className="text-xs uppercase tracking-[0.3em] text-dark-400">Phase {index + 1}</p>
+      <h4 className="text-2xl font-semibold text-white mt-3">{title}</h4>
+      <p className="text-dark-300 mt-4">{description}</p>
+    </motion.div>
+  );
+}
+
 export default function ScrollNarrative() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
@@ -76,23 +103,16 @@ export default function ScrollNarrative() {
           </div>
 
           <div className="space-y-8">
-            {steps.map((step, index) => {
-              const start = index / steps.length;
-              const end = (index + 1) / steps.length;
-              const opacity = useTransform(scrollYProgress, [start, end], [0.4, 1]);
-              const y = useTransform(scrollYProgress, [start, end], [20, 0]);
-              return (
-                <motion.div
-                  key={step.title}
-                  style={{ opacity, y }}
-                  className="holo-card rounded-[28px] p-6"
-                >
-                  <p className="text-xs uppercase tracking-[0.3em] text-dark-400">Phase {index + 1}</p>
-                  <h4 className="text-2xl font-semibold text-white mt-3">{step.title}</h4>
-                  <p className="text-dark-300 mt-4">{step.description}</p>
-                </motion.div>
-              );
-            })}
+            {steps.map((step, index) => (
+              <StepCard
+                key={step.title}
+                index={index}
+                title={step.title}
+                description={step.description}
+                scrollYProgress={scrollYProgress}
+                total={steps.length}
+              />
+            ))}
           </div>
         </div>
       </div>
