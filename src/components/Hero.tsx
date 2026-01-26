@@ -6,6 +6,7 @@ import { Github, Linkedin, Mail, Send, Sparkles } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SignatureRive from './SignatureRive';
 
 const socials = [
   { name: 'GitHub', href: 'https://github.com/kenrickles', icon: Github },
@@ -181,50 +182,54 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          <motion.div
-            ref={cardRef}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass-card p-8 rounded-3xl gradient-border parallax-card"
-            style={canHover ? { rotateX: springX, rotateY: springY } : undefined}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="relative h-24 w-24 rounded-3xl overflow-hidden ring-2 ring-white/10">
-                  <Image
-                    src="/kenrick.jpg"
-                    alt="Kenrick Tan"
-                    fill
-                    className="object-cover"
-                    sizes="96px"
-                    priority
-                  />
+          <div className="space-y-6">
+            <motion.div
+              ref={cardRef}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="glass-card p-8 rounded-3xl gradient-border parallax-card"
+              style={canHover ? { rotateX: springX, rotateY: springY } : undefined}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="relative h-24 w-24 rounded-3xl overflow-hidden ring-2 ring-white/10">
+                    <Image
+                      src="/kenrick.jpg"
+                      alt="Kenrick Tan"
+                      fill
+                      className="object-cover"
+                      sizes="96px"
+                      priority
+                    />
+                  </div>
+                  <div>
+                    <p className="text-dark-400 text-sm">Currently at</p>
+                    <h3 className="text-2xl font-semibold text-white mt-1">Galaxy · Protocol Engineer</h3>
+                    <p className="text-dark-300 text-sm">Singapore · Full-time</p>
+                  </div>
                 </div>
                 <div>
-                  <p className="text-dark-400 text-sm">Currently at</p>
-                  <h3 className="text-2xl font-semibold text-white mt-1">Galaxy · Protocol Engineer</h3>
-                  <p className="text-dark-300 text-sm">Singapore · Full-time</p>
+                  <p className="text-dark-400 text-sm">Current Focus</p>
+                  <h3 className="text-2xl font-semibold text-white mt-2">Secure, scalable blockchain & cloud platforms</h3>
+                </div>
+                <div className="space-y-4 text-dark-200">
+                  <p>• Protocol hardening & release safety</p>
+                  <p>• Kubernetes platform reliability</p>
+                  <p>• DevSecOps automation & developer experience</p>
+                  <p>• Security-by-default deployment pipelines</p>
+                </div>
+                <div className="flex items-center gap-3 text-dark-300 text-sm">
+                  <Sparkles size={16} className="animate-pulse" />
+                  Cosmic systems, calm ops
                 </div>
               </div>
-              <div>
-                <p className="text-dark-400 text-sm">Current Focus</p>
-                <h3 className="text-2xl font-semibold text-white mt-2">Secure, scalable blockchain & cloud platforms</h3>
-              </div>
-              <div className="space-y-4 text-dark-200">
-                <p>• Protocol hardening & release safety</p>
-                <p>• Kubernetes platform reliability</p>
-                <p>• DevSecOps automation & developer experience</p>
-                <p>• Security-by-default deployment pipelines</p>
-              </div>
-              <div className="flex items-center gap-3 text-dark-300 text-sm">
-                <Sparkles size={16} className="animate-pulse" />
-                Cosmic systems, calm ops
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            <SignatureRive />
+          </div>
         </div>
       </div>
     </section>
