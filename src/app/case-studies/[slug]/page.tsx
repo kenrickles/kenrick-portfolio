@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import ArchitectureDiagram from '@/components/ArchitectureDiagram';
 import { caseStudies, getCaseStudy } from '@/lib/caseStudies';
 
 export async function generateStaticParams() {
@@ -40,6 +41,12 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             <h2 className="text-2xl font-semibold text-white">Problem</h2>
             <p className="text-dark-200 mt-4">{study.problem}</p>
           </div>
+
+          <ArchitectureDiagram
+            title={study.diagram.title}
+            nodes={study.diagram.nodes}
+            edges={study.diagram.edges}
+          />
 
           <div className="glass-card rounded-3xl p-8">
             <h2 className="text-2xl font-semibold text-white">Approach</h2>
