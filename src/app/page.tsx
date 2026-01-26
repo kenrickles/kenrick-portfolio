@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import Impact from '@/components/Impact';
+import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
 import Certifications from '@/components/Certifications';
 import Education from '@/components/Education';
@@ -22,6 +24,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
+      <Impact />
+      <Projects />
       <Experience />
       <Certifications />
       <Education />
