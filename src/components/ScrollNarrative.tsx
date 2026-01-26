@@ -1,7 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionHeading from './SectionHeading';
 
 const steps = [
@@ -27,41 +28,48 @@ const steps = [
   },
 ];
 
-function StepCard({
-  index,
-  title,
-  description,
-  scrollYProgress,
-  total,
-}: {
-  index: number;
-  title: string;
-  description: string;
-  scrollYProgress: ReturnType<typeof useScroll>['scrollYProgress'];
-  total: number;
-}) {
-  const start = index / total;
-  const end = (index + 1) / total;
-  const opacity = useTransform(scrollYProgress, [start, end], [0.4, 1]);
-  const y = useTransform(scrollYProgress, [start, end], [20, 0]);
-
-  return (
-    <motion.div style={{ opacity, y }} className="holo-card rounded-[28px] p-6">
-      <p className="text-xs uppercase tracking-[0.3em] text-dark-400">Phase {index + 1}</p>
-      <h4 className="text-2xl font-semibold text-white mt-3">{title}</h4>
-      <p className="text-dark-300 mt-4">{description}</p>
-    </motion.div>
-  );
-}
-
 export default function ScrollNarrative() {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  });
+  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const progressRef = useRef<HTMLDivElement | null>(null);
 
-  const progressHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.set(cardsRef.current, { opacity: 0.45, y: 18 });
+      gsap.set(progressRef.current, { width: '0%' });
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: '+=700',
+          scrub: true,
+        },
+      });
+
+      timeline.to(progressRef.current, { width: '100%', ease: 'none' }, 0);
+
+      cardsRef.current.forEach((card, index) => {
+        timeline.to(
+          card,
+          {
+            opacity: 1,
+            y: 0,
+            ease: 'none',
+            duration: 0.25,
+          },
+          index * 0.18
+        );
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section id="mission" className="py-24 relative">
@@ -93,9 +101,9 @@ export default function ScrollNarrative() {
                   <span className="text-xs text-dark-300">Live</span>
                 </div>
                 <div className="mt-4 h-2 rounded-full bg-white/5 overflow-hidden">
-                  <motion.div
+                  <div
+                    ref={progressRef}
                     className="h-full bg-gradient-to-r from-accent-teal to-accent-sand"
-                    style={{ width: progressHeight }}
                   />
                 </div>
               </div>
@@ -104,14 +112,17 @@ export default function ScrollNarrative() {
 
           <div className="space-y-8">
             {steps.map((step, index) => (
-              <StepCard
+              <div
                 key={step.title}
-                index={index}
-                title={step.title}
-                description={step.description}
-                scrollYProgress={scrollYProgress}
-                total={steps.length}
-              />
+                ref={(el) => {
+                  if (el) cardsRef.current[index] = el;
+                }}
+                className="holo-card rounded-[28px] p-6"
+              >
+                <p className="text-xs uppercase tracking-[0.3em] text-dark-400">Phase {index + 1}</p>
+                <h4 className="text-2xl font-semibold text-white mt-3">{step.title}</h4>
+                <p className="text-dark-300 mt-4">{step.description}</p>
+              </div>
             ))}
           </div>
         </div>
