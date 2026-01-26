@@ -9,6 +9,9 @@
   --ink: #f8fafc;
   --muted: #a3b3c7;
   --glow: rgba(94, 234, 212, 0.25);
+  --surface-1: rgba(12, 18, 32, 0.55);
+  --surface-2: rgba(10, 14, 24, 0.75);
+  --border-subtle: rgba(148, 163, 184, 0.18);
 }
 
 * {
@@ -17,10 +20,11 @@
 
 body {
   font-family: var(--font-body), ui-serif, system-ui;
-  background: radial-gradient(circle at 15% 10%, rgba(94, 234, 212, 0.2), transparent 40%),
-    radial-gradient(circle at 85% 20%, rgba(59, 130, 246, 0.2), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.15), transparent 45%),
-    #06070d;
+  color-scheme: dark;
+  background: radial-gradient(circle at 12% 12%, rgba(94, 234, 212, 0.18), transparent 42%),
+    radial-gradient(circle at 88% 18%, rgba(99, 102, 241, 0.2), transparent 48%),
+    radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.12), transparent 50%),
+    #05070f;
   color: var(--ink);
 }
 
@@ -49,16 +53,16 @@ h1, h2, h3, h4, h5 {
 
 /* Glassmorphism utility */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-1);
   backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .glass-card {
-  background: rgba(12, 16, 28, 0.6);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow: 0 20px 70px rgba(8, 10, 20, 0.55);
+  background: var(--surface-2);
+  backdrop-filter: blur(26px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 24px 80px rgba(5, 8, 18, 0.6);
 }
 
 /* Gradient text */
@@ -305,18 +309,24 @@ section {
 }
 
 .holo-card {
-  background: linear-gradient(180deg, rgba(12, 16, 30, 0.92), rgba(8, 10, 20, 0.78));
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow: 0 25px 80px rgba(6, 10, 22, 0.55);
+  background: linear-gradient(180deg, rgba(12, 16, 30, 0.9), rgba(7, 10, 20, 0.82));
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 28px 90px rgba(4, 8, 20, 0.6);
   position: relative;
   overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.holo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 34px 110px rgba(4, 8, 20, 0.7);
 }
 
 .holo-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.05), transparent 55%);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 60%);
   opacity: 0.8;
   pointer-events: none;
 }
@@ -324,11 +334,11 @@ section {
 .holo-card::after {
   content: '';
   position: absolute;
-  inset: -40% 0;
-  background: conic-gradient(from 180deg, rgba(94, 234, 212, 0.18), rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2), rgba(94, 234, 212, 0.18));
-  opacity: 0.25;
+  inset: -50% 0;
+  background: conic-gradient(from 180deg, rgba(94, 234, 212, 0.12), rgba(99, 102, 241, 0.16), rgba(236, 72, 153, 0.18), rgba(94, 234, 212, 0.12));
+  opacity: 0.2;
   mix-blend-mode: screen;
-  animation: spin 18s linear infinite;
+  animation: spin 22s linear infinite;
   pointer-events: none;
 }
 
@@ -396,5 +406,27 @@ section {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid rgba(94, 234, 212, 0.55);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .aurora,
+  .aurora-sweep,
+  .holo-card::after,
+  .orbit-item,
+  .parallax-card {
+    animation: none !important;
   }
 }

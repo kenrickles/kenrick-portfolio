@@ -25,11 +25,12 @@ export default function SectionHeading({ title, subtitle }: SectionHeadingProps)
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-dark-300 mt-2 max-w-2xl"
+          className="text-dark-200/90 mt-3 max-w-2xl"
         >
           {subtitle}
         </motion.p>
       )}
+      <div className="mt-5 h-px w-20 bg-gradient-to-r from-accent-cyan/70 via-accent-purple/60 to-transparent" />
     </div>
   );
 }
