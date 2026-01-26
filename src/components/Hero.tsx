@@ -3,7 +3,9 @@
 import Image from 'next/image';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { Github, Linkedin, Mail, Send, Sparkles } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const socials = [
   { name: 'GitHub', href: 'https://github.com/kenrickles', icon: Github },
@@ -14,6 +16,14 @@ const socials = [
 
 export default function Hero() {
   const [canHover, setCanHover] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const subtitleRef = useRef<HTMLParagraphElement | null>(null);
+  const ctaRef = useRef<HTMLDivElement | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const glowOneRef = useRef<HTMLDivElement | null>(null);
+  const glowTwoRef = useRef<HTMLDivElement | null>(null);
+
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
   const springX = useSpring(rotateX, { stiffness: 120, damping: 18 });
@@ -26,6 +36,34 @@ export default function Hero() {
     const handler = (event: MediaQueryListEvent) => setCanHover(event.matches);
     media.addEventListener('change', handler);
     return () => media.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: '+=420',
+          scrub: true,
+        },
+      });
+
+      timeline
+        .fromTo(titleRef.current, { y: 0, opacity: 1 }, { y: -40, opacity: 0.6, ease: 'none' }, 0)
+        .fromTo(subtitleRef.current, { y: 0, opacity: 1 }, { y: -20, opacity: 0.7, ease: 'none' }, 0)
+        .fromTo(ctaRef.current, { y: 0, opacity: 1 }, { y: -12, opacity: 0.8, ease: 'none' }, 0)
+        .fromTo(cardRef.current, { y: 0, scale: 1 }, { y: -24, scale: 0.98, ease: 'none' }, 0)
+        .fromTo(glowOneRef.current, { y: 0, opacity: 0.7 }, { y: -40, opacity: 0.4, ease: 'none' }, 0)
+        .fromTo(glowTwoRef.current, { y: 0, opacity: 0.7 }, { y: 20, opacity: 0.5, ease: 'none' }, 0);
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -49,10 +87,10 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="pt-32 md:pt-40 pb-24 relative overflow-hidden">
+    <section ref={sectionRef} id="hero" className="pt-32 md:pt-40 pb-24 relative overflow-hidden">
       <div className="absolute inset-0 opacity-60">
-        <div className="absolute -top-32 -right-20 h-80 w-80 rounded-full bg-accent-teal/20 blur-[140px]" />
-        <div className="absolute top-48 -left-32 h-80 w-80 rounded-full bg-accent-sand/20 blur-[160px]" />
+        <div ref={glowOneRef} className="absolute -top-32 -right-20 h-80 w-80 rounded-full bg-accent-teal/20 blur-[140px]" />
+        <div ref={glowTwoRef} className="absolute top-48 -left-32 h-80 w-80 rounded-full bg-accent-sand/20 blur-[160px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative cosmic-grid">
@@ -73,6 +111,7 @@ export default function Hero() {
               Protocol Engineer · Galaxy (Singapore)
             </motion.p>
             <motion.h1
+              ref={titleRef}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -82,6 +121,7 @@ export default function Hero() {
               <span className="gradient-text">Protocol Engineer · DevSecOps · Platform</span>
             </motion.h1>
             <motion.p
+              ref={subtitleRef}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -103,6 +143,7 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
+              ref={ctaRef}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -141,6 +182,7 @@ export default function Hero() {
           </div>
 
           <motion.div
+            ref={cardRef}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
