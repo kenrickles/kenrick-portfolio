@@ -11,7 +11,7 @@ export default function SignatureMotion() {
       <div>
         <p className="text-xs uppercase tracking-[0.3em] text-dark-400">Signature motion</p>
         <p className="text-sm text-white">Minimal orbit · CSS‑only</p>
-        <p className="text-xs text-dark-300 mt-1">Lightweight, no external assets</p>
+        <p className="text-xs text-dark-300 mt-1">Slow glow, crafted for focus</p>
       </div>
     </div>
   );
