@@ -1,31 +1,31 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
-const body = Source_Serif_4({
-  subsets: ["latin"],
-  variable: "--font-body",
-});
-
 export const metadata: Metadata = {
-  title: "Kenrick | Protocol Engineer",
-  description: "Personal portfolio of Kenrick - Protocol Engineer at Galaxy, Singapore. Specializing in DevSecOps, Kubernetes, and blockchain infrastructure.",
-  keywords: ["Protocol Engineer", "DevSecOps", "Kubernetes", "Cloud Engineer", "Singapore", "Blockchain", "Portfolio"],
-  authors: [{ name: "Kenrick" }],
+  title: "Kenrick Tan | Protocol Engineer at Galaxy",
+  description:
+    "Kenrick Tan is a protocol engineer at Galaxy in Singapore, building calm, resilient infrastructure for AI-forward teams.",
+  keywords: [
+    "Protocol Engineer",
+    "Infrastructure",
+    "Kubernetes",
+    "Platform Engineering",
+    "AI Tooling",
+    "Singapore",
+    "Portfolio",
+  ],
+  authors: [{ name: "Kenrick Tan" }],
   openGraph: {
-    title: "Kenrick | Protocol Engineer",
-    description: "Personal portfolio of Kenrick - Protocol Engineer at Galaxy, Singapore.",
+    title: "Kenrick Tan | Protocol Engineer at Galaxy",
+    description:
+      "Portfolio of Kenrick Tan, protocol engineer focused on infrastructure reliability and AI tooling.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kenrick | Protocol Engineer",
-    description: "Personal portfolio of Kenrick - Protocol Engineer at Galaxy, Singapore.",
+    title: "Kenrick Tan | Protocol Engineer at Galaxy",
+    description:
+      "Portfolio of Kenrick Tan, protocol engineer focused on infrastructure reliability and AI tooling.",
   },
 };
 
@@ -35,10 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" data-theme="dark">
-      <body className={`${display.variable} ${body.variable} antialiased`}>
-        {children}
-      </body>
+    <html lang="en" className="scroll-smooth">
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

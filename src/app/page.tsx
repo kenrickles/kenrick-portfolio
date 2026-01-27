@@ -1,388 +1,390 @@
-const skills = [
+'use client';
+
+import { motion } from 'framer-motion';
+import CustomCursor from '@/components/CustomCursor';
+
+const navLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const experiences = [
   {
-    title: "Infrastructure & Reliability",
-    items: ["Kubernetes", "Service mesh", "Zero-downtime rollouts", "Capacity planning", "SLOs & error budgets"],
+    timeframe: '2023 — Present',
+    role: 'Protocol Engineer',
+    company: 'Galaxy',
+    location: 'Singapore',
+    highlights: [
+      'Built reliable protocol services and tooling for AI-forward product teams.',
+      'Standardized Kubernetes reliability practices with SLO-driven rollouts.',
+      'Partnered with platform leaders to harden observability and incident response.',
+    ],
+    stack: ['Kubernetes', 'Go', 'Terraform', 'OpenTelemetry'],
   },
   {
-    title: "Platform & Tooling",
-    items: ["Internal developer platforms", "Policy-as-code", "Terraform", "CI/CD orchestration", "Secrets management"],
+    timeframe: '2020 — 2023',
+    role: 'Staff Infrastructure Engineer',
+    company: 'Nimbus Cloud',
+    location: 'Singapore',
+    highlights: [
+      'Designed multi-region infrastructure guardrails and automation pipelines.',
+      'Improved platform release confidence with policy-as-code and runtime checks.',
+      'Led reliability reviews for mission-critical services across APAC.',
+    ],
+    stack: ['AWS', 'Kubernetes', 'OPA', 'ArgoCD'],
   },
   {
-    title: "AI Systems",
-    items: ["Agentic workflows", "GPU scheduling", "RAG pipelines", "Vector search", "Evaluation harnesses"],
+    timeframe: '2017 — 2020',
+    role: 'Systems Engineer',
+    company: 'Arclight Labs',
+    location: 'Singapore',
+    highlights: [
+      'Scaled real-time systems while maintaining 24/7 operational calm.',
+      'Delivered observability standards for logs, metrics, and tracing.',
+      'Built incident response playbooks and readiness drills.',
+    ],
+    stack: ['Kafka', 'Postgres', 'Grafana', 'Python'],
   },
 ];
 
 const projects = [
   {
-    name: "Atlas Control Plane",
-    description: "Unified platform to provision, observe, and secure multi-region clusters with drift detection.",
-    impact: ["43% faster environment spin-up", "99.97% service availability", "Infra spend -18% YoY"],
-    stack: ["Go", "Kubernetes", "Terraform", "OPA"],
+    name: 'Atlas Control Plane',
+    description: 'Unified platform for provisioning, securing, and observing multi-region clusters.',
+    impact: ['43% faster environment spin-up', '99.97% service availability', 'Infra spend -18% YoY'],
+    stack: ['Go', 'Kubernetes', 'Terraform', 'OPA'],
   },
   {
-    name: "SignalForge Observability",
-    description: "Telemetry pipeline that normalizes logs, metrics, and traces across hybrid infrastructure.",
-    impact: ["12TB/day ingest", "p99 query latency 1.6s", "Automated anomaly routing"],
-    stack: ["ClickHouse", "OpenTelemetry", "Kafka", "Grafana"],
+    name: 'SignalForge Observability',
+    description: 'Telemetry pipeline that normalizes logs, metrics, and traces across hybrid infra.',
+    impact: ['12TB/day ingest', 'p99 query latency 1.6s', 'Automated anomaly routing'],
+    stack: ['ClickHouse', 'OpenTelemetry', 'Kafka', 'Grafana'],
   },
   {
-    name: "Helix AI Tooling",
-    description: "Internal agent framework with guardrails, eval suites, and secure data connectors.",
-    impact: ["34% reduction in manual ops tasks", "LLM safety score 0.91", "40+ workflows onboarded"],
-    stack: ["Python", "FastAPI", "Postgres", "LLM APIs"],
+    name: 'Helix AI Tooling',
+    description: 'Internal agent framework with guardrails, eval suites, and secure data connectors.',
+    impact: ['34% reduction in manual ops tasks', 'LLM safety score 0.91', '40+ workflows onboarded'],
+    stack: ['Python', 'FastAPI', 'Postgres', 'LLM APIs'],
   },
 ];
 
-const experiences = [
-  {
-    role: "Principal Systems Engineer",
-    company: "Galaxy",
-    timeframe: "2023 — Present",
-    highlights: [
-      "Led platform reliability strategy across 120+ services and multi-region Kubernetes.",
-      "Built infra guardrails for regulated data flows and zero-trust service identities.",
-    ],
+const fadeInContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.14,
+    },
   },
-  {
-    role: "Staff Infrastructure Engineer",
-    company: "Nimbus Cloud",
-    timeframe: "2020 — 2023",
-    highlights: [
-      "Designed internal developer platform adopted by 6 product squads.",
-      "Reduced build-to-deploy cycle from 90 minutes to under 12 minutes.",
-    ],
-  },
-  {
-    role: "Systems Engineer",
-    company: "Arclight Labs",
-    timeframe: "2017 — 2020",
-    highlights: [
-      "Scaled real-time data processing for 24/7 production workloads.",
-      "Implemented service observability standards and on-call playbooks.",
-    ],
-  },
-];
+};
 
-const stackTags = [
-  "Kubernetes",
-  "Go",
-  "Terraform",
-  "AWS / GCP",
-  "OpenTelemetry",
-  "Postgres",
-  "Kafka",
-  "ArgoCD",
-  "Istio",
-  "Python",
-  "Grafana",
-  "LLM Ops",
-];
+const fadeInItem = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+function ProjectCard({
+  name,
+  description,
+  impact,
+  stack,
+}: {
+  name: string;
+  description: string;
+  impact: string[];
+  stack: string[];
+}) {
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    event.currentTarget.style.setProperty('--x', `${x}px`);
+    event.currentTarget.style.setProperty('--y', `${y}px`);
+  };
+
+  return (
+    <motion.article
+      variants={fadeInItem}
+      onMouseMove={handleMouseMove}
+      className="project-card group"
+    >
+      <div className="space-y-4">
+        <div>
+          <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Project</p>
+          <h3 className="mt-3 text-2xl font-semibold text-white">{name}</h3>
+          <p className="mt-3 text-sm text-[color:var(--muted)]">{description}</p>
+        </div>
+        <div className="space-y-2 text-sm text-[color:var(--muted)]">
+          {impact.map((item) => (
+            <p key={item}>• {item}</p>
+          ))}
+        </div>
+      </div>
+      <div className="mt-6 flex flex-wrap gap-2">
+        {stack.map((item) => (
+          <span key={item} className="pill">
+            {item}
+          </span>
+        ))}
+      </div>
+      <a
+        href="#"
+        className="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)] transition group-hover:translate-x-1"
+      >
+        View Project →
+      </a>
+    </motion.article>
+  );
+}
 
 export default function Home() {
   return (
-    <main className="page-shell text-white">
-      <div className="pointer-events-none absolute -top-56 left-[10%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(126,240,214,0.22),transparent_60%)] blur-3xl" />
-      <div className="pointer-events-none absolute right-[5%] top-0 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(134,184,255,0.28),transparent_62%)] blur-3xl" />
-
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-black/50 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
-            Kenrick
-          </div>
-          <nav className="hidden items-center gap-6 text-xs uppercase tracking-[0.28em] text-white/60 md:flex">
-            <a className="transition hover:text-white" href="#about">
-              About
-            </a>
-            <a className="transition hover:text-white" href="#skills">
-              Stack
-            </a>
-            <a className="transition hover:text-white" href="#projects">
-              Projects
-            </a>
-            <a className="transition hover:text-white" href="#experience">
-              Experience
-            </a>
-            <a className="transition hover:text-white" href="#contact">
-              Contact
-            </a>
-          </nav>
-          <a
-            className="rounded-full border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white/80 transition hover:border-white/60 hover:text-white"
-            href="#contact"
-          >
-            Let’s build
-          </a>
-        </div>
-      </header>
-
-      <section className="section-shell mx-auto grid max-w-6xl gap-12 px-6 pb-16 pt-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-        <div>
-          <p className="kicker">Systems Engineer • Infrastructure • AI Tooling</p>
-          <h1 className="mt-6 text-4xl font-semibold leading-tight text-white md:text-6xl">
-            Kenrick designs calm, resilient infrastructure for AI-forward teams.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-white/70">
-            I build platforms that make complex systems feel inevitable, from multi-region Kubernetes
-            to production-grade agent workflows. The focus is reliability, velocity, and steady operations.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              className="btn-primary"
-              href="#projects"
-            >
-              View projects
-            </a>
-            <a
-              className="btn-secondary"
-              href="#contact"
-            >
-              Start a conversation
-            </a>
-          </div>
-          <div className="mt-10 grid gap-6 text-sm text-white/60 md:grid-cols-3">
-            <div className="metric-block">
-              <p className="text-xl font-semibold text-white">12+ years</p>
-              <p>Infra & systems leadership</p>
-            </div>
-            <div className="metric-block">
-              <p className="text-xl font-semibold text-white">Global scale</p>
-              <p>APAC • EMEA • NA</p>
-            </div>
-            <div className="metric-block">
-              <p className="text-xl font-semibold text-white">24/7 ops</p>
-              <p>On-call readiness</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="glass-panel rounded-[32px] p-7">
-          <div className="flex items-center justify-between">
-            <p className="kicker">Current focus</p>
-            <span className="pill border-emerald-300/40 bg-emerald-300/10 text-emerald-200">
-              Advisory Q2
-            </span>
-          </div>
-          <h2 className="mt-4 text-2xl font-semibold text-white">
-            Reliability strategy for AI-native infrastructure
-          </h2>
-          <p className="mt-4 text-sm text-white/70">
-            Partnering with product and engineering leaders to ship secure, observable systems, from
-            GPU clusters to runtime guardrails.
-          </p>
-          <div className="mt-6 grid gap-4">
-            {["Platform architecture reviews", "SRE team enablement", "AI tooling acceleration"].map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/75"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="about"
-        className="section-shell mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr] section-divider"
-      >
-        <div>
-          <p className="kicker">About</p>
-          <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">
-            Calm systems, fast teams, and thoughtful guardrails.
-          </h2>
-          <p className="mt-6 text-base text-white/70">
-            Kenrick is a systems engineer focused on infrastructure reliability, internal tooling, and AI
-            operations. He builds platforms that let teams ship faster without compromising safety,
-            with a deep emphasis on automation, observability, and measurable outcomes.
-          </p>
-          <p className="mt-4 text-base text-white/70">
-            His work spans regulated environments, distributed compute, and multi-region disaster
-            recovery — translating complex constraints into clear execution paths.
-          </p>
-        </div>
-        <div className="grid gap-4">
-          {[
-            { label: "Core focus", value: "Infra architecture, reliability, AI tooling" },
-            { label: "Based in", value: "Singapore (remote-friendly globally)" },
-            { label: "Strengths", value: "Incident response, platform design, governance" },
-            { label: "Values", value: "Operational calm, measurable impact, clarity" },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="card-surface rounded-2xl px-6 py-4"
-            >
-              <p className="kicker">{item.label}</p>
-              <p className="mt-2 text-base font-semibold text-white">{item.value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="skills" className="section-shell mx-auto max-w-6xl px-6 py-16 section-divider">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="kicker">Skills</p>
-            <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">
-              Platform engineering with a product mindset.
-            </h2>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {stackTags.map((tag) => (
-              <span
-                key={tag}
-                className="pill border-white/15 bg-white/5 text-white/70"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {skills.map((skill) => (
-            <div
-              key={skill.title}
-              className="card-surface rounded-3xl p-6"
-            >
-              <h3 className="text-xl font-semibold text-white">{skill.title}</h3>
-              <ul className="mt-4 space-y-2 text-sm text-white/70">
-                {skill.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/60" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="projects" className="section-shell mx-auto max-w-6xl px-6 py-16 section-divider">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="kicker">Selected projects</p>
-            <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">
-              Infrastructure shipped with measurable outcomes.
-            </h2>
-          </div>
-          <a
-            className="text-xs font-semibold uppercase tracking-[0.24em] text-white/60 transition hover:text-white"
-            href="#contact"
-          >
-            Request case studies →
-          </a>
-        </div>
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {projects.map((project) => (
-            <article
-              key={project.name}
-              className="card-surface flex h-full flex-col rounded-3xl p-6"
-            >
-              <div>
-                <h3 className="text-xl font-semibold text-white">{project.name}</h3>
-                <p className="mt-3 text-sm text-white/70">{project.description}</p>
-              </div>
-              <div className="mt-6 space-y-2 text-sm text-white/60">
-                {project.impact.map((item) => (
-                  <p key={item}>• {item}</p>
-                ))}
-              </div>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {project.stack.map((item) => (
-                  <span
-                    key={item}
-                    className="pill border-white/15 bg-white/5 text-white/70"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="experience" className="section-shell mx-auto max-w-6xl px-6 py-16 section-divider">
-        <div>
-          <p className="kicker">Experience</p>
-          <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">
-            Building systems that earn trust at scale.
-          </h2>
-        </div>
-        <div className="mt-10 space-y-8 border-l border-white/10 pl-6">
-          {experiences.map((item) => (
-            <div key={item.role} className="relative">
-              <span className="absolute -left-[34px] top-1 h-3 w-3 rounded-full border border-white/40 bg-black" />
-              <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold text-white">{item.role}</h3>
-                  <p className="text-sm text-white/60">{item.company}</p>
-                </div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
-                  {item.timeframe}
+    <main className="site-shell">
+      <CustomCursor />
+      <div className="mx-auto w-full max-w-6xl px-6 py-12 lg:py-20">
+        <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
+          <aside className="flex flex-col gap-10 lg:sticky lg:top-16 lg:h-[calc(100vh-8rem)]">
+            <motion.div variants={fadeInContainer} initial="hidden" animate="show" className="space-y-6">
+              <motion.div variants={fadeInItem}>
+                <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--muted)]">Portfolio</p>
+                <h1 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">Kenrick Tan</h1>
+                <p className="mt-3 text-lg text-[color:var(--accent)]">
+                  Protocol Engineer at Galaxy
                 </p>
-              </div>
-              <ul className="mt-3 space-y-2 text-sm text-white/70">
-                {item.highlights.map((highlight) => (
-                  <li key={highlight} className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/60" />
-                    <span>{highlight}</span>
-                  </li>
+                <p className="mt-4 text-sm leading-relaxed text-[color:var(--muted)]">
+                  I build calm, resilient infrastructure for AI-forward teams.
+                </p>
+              </motion.div>
+
+              <motion.nav variants={fadeInItem} className="flex flex-col gap-3" aria-label="Primary">
+                {navLinks.map((link) => (
+                  <a key={link.href} href={link.href} className="nav-link">
+                    {link.label}
+                  </a>
                 ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
+              </motion.nav>
+            </motion.div>
 
-      <section id="contact" className="section-shell mx-auto max-w-6xl px-6 py-16 section-divider">
-        <div className="glass-panel grid gap-10 rounded-3xl p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-          <div>
-            <p className="kicker">Contact</p>
-            <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">
-              Let’s design the infrastructure your product deserves.
-            </h2>
-            <p className="mt-4 text-base text-white/70">
-              I collaborate with leadership teams on reliability strategy, platform design, and AI
-              systems readiness. Share a brief and I will respond within 48 hours.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-4">
-              <a
-                className="btn-primary"
-                href="mailto:kenrick@hello.dev"
+            <motion.div variants={fadeInContainer} initial="hidden" animate="show" className="mt-auto">
+              <motion.div variants={fadeInItem} className="flex flex-row gap-3 lg:flex-col">
+                <a
+                  className="social-link"
+                  href="https://github.com/kenrickles"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                >
+                  <span className="sr-only">GitHub</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.38-3.37-1.38-.46-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.36 1.12 2.94.85.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.15-4.56-5.11 0-1.13.39-2.05 1.03-2.77-.1-.26-.45-1.32.1-2.75 0 0 .84-.28 2.75 1.05a9.2 9.2 0 0 1 5 0c1.9-1.33 2.75-1.05 2.75-1.05.55 1.43.2 2.49.1 2.75.64.72 1.03 1.64 1.03 2.77 0 3.97-2.34 4.85-4.57 5.1.36.32.68.96.68 1.94 0 1.4-.01 2.53-.01 2.87 0 .27.18.59.69.49A10.27 10.27 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+                <a
+                  className="social-link"
+                  href="https://linkedin.com/in/kenrick-tan"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <span className="sr-only">LinkedIn</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M20.45 20.45H16.9v-5.6c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.46-2.15 2.96v5.69H9.34V9h3.4v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.44v6.3ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm-1.8 13.02h3.6V9h-3.6v11.45Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+                <a
+                  className="social-link"
+                  href="mailto:kenrickles@gmail.com"
+                  aria-label="Email"
+                >
+                  <span className="sr-only">Email</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+                <a
+                  className="social-link"
+                  href="https://t.me/kenrickles"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Telegram"
+                >
+                  <span className="sr-only">Telegram</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M21.95 4.64 18.7 19.55c-.25 1.07-.9 1.34-1.83.83l-5.05-3.73-2.44 2.34c-.27.27-.5.5-1.03.5l.36-5.2 9.46-8.54c.41-.36-.09-.56-.64-.2L6.67 12.9l-4.64-1.45c-1-.32-1.02-1.01.21-1.5l18.13-7c.84-.31 1.57.2 1.58.7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+              </motion.div>
+            </motion.div>
+          </aside>
+
+          <div className="flex flex-col gap-16 pb-16">
+            <motion.section
+              id="about"
+              className="section-block"
+              variants={fadeInContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.div variants={fadeInItem} className="space-y-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">About</p>
+                <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+                  Calm precision for resilient infrastructure.
+                </h2>
+                <p className="text-sm leading-relaxed text-[color:var(--muted)]">
+                  I design infrastructure reliability systems, Kubernetes platforms, and AI tooling that
+                  make operations feel steady. I care about platform engineering that reduces chaos,
+                  creates observability you can trust, and gives teams more room to ship.
+                </p>
+                <p className="text-sm leading-relaxed text-[color:var(--muted)]">
+                  I’m currently at Galaxy in Singapore, partnering with product and platform leaders to
+                  build calm, resilient systems. You can find more work on my{' '}
+                  <a className="text-link" href="https://github.com/kenrickles" target="_blank" rel="noreferrer">
+                    GitHub
+                  </a>{' '}
+                  and stay connected on{' '}
+                  <a className="text-link" href="https://linkedin.com/in/kenrick-tan" target="_blank" rel="noreferrer">
+                    LinkedIn
+                  </a>.
+                </p>
+                <p className="text-sm leading-relaxed text-[color:var(--muted)]">
+                  My focus spans infrastructure reliability, Kubernetes, platform engineering, and AI tooling
+                  for fast-growing teams that need measurable operational clarity.
+                </p>
+              </motion.div>
+            </motion.section>
+
+            <motion.section
+              id="experience"
+              className="section-block"
+              variants={fadeInContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <motion.div variants={fadeInItem} className="space-y-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Experience</p>
+                <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+                  Building systems that earn trust.
+                </h2>
+              </motion.div>
+              <div className="mt-8 space-y-6">
+                {experiences.map((item) => (
+                  <motion.article
+                    key={item.role}
+                    variants={fadeInItem}
+                    className="timeline-item"
+                  >
+                    <div className="grid gap-6 sm:grid-cols-[120px_1fr]">
+                      <p className="text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">
+                        {item.timeframe}
+                      </p>
+                      <div className="space-y-4">
+                        <div>
+                          <h3 className="text-xl font-semibold text-white">
+                            {item.role} · {item.company}
+                          </h3>
+                          <p className="text-sm text-[color:var(--muted)]">{item.location}</p>
+                        </div>
+                        <ul className="space-y-2 text-sm text-[color:var(--muted)]">
+                          {item.highlights.map((highlight) => (
+                            <li key={highlight} className="flex items-start gap-2">
+                              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="flex flex-wrap gap-2">
+                          {item.stack.map((tech) => (
+                            <span key={tech} className="pill">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              id="projects"
+              className="section-block"
+              variants={fadeInContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <motion.div variants={fadeInItem} className="space-y-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Projects</p>
+                <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+                  Calm systems shipped at scale.
+                </h2>
+              </motion.div>
+              <motion.div
+                variants={fadeInContainer}
+                className="mt-8 grid gap-6"
               >
-                Send email
-              </a>
-              <a
-                className="btn-secondary"
-                href="#projects"
-              >
-                View work
-              </a>
-            </div>
-          </div>
-          <div className="space-y-4 text-sm text-white/70">
-            <div className="card-surface rounded-2xl p-5">
-              <p className="kicker">Email</p>
-              <p className="mt-2 text-base font-semibold text-white">kenrick@hello.dev</p>
-            </div>
-            <div className="card-surface rounded-2xl p-5">
-              <p className="kicker">Availability</p>
-              <p className="mt-2 text-base font-semibold text-white">Advisory + fractional roles</p>
-            </div>
-            <div className="card-surface rounded-2xl p-5">
-              <p className="kicker">Focus</p>
-              <p className="mt-2 text-base font-semibold text-white">Infra maturity, AI ops, platform scale</p>
-            </div>
+                {projects.map((project) => (
+                  <ProjectCard key={project.name} {...project} />
+                ))}
+              </motion.div>
+            </motion.section>
+
+            <motion.section
+              id="contact"
+              className="section-block"
+              variants={fadeInContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.div variants={fadeInItem} className="space-y-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Contact</p>
+                <h2 className="text-3xl font-semibold text-white sm:text-4xl">Get in touch</h2>
+                <p className="text-sm leading-relaxed text-[color:var(--muted)]">
+                  Open to advisory and fractional roles.
+                </p>
+              </motion.div>
+              <motion.div variants={fadeInItem} className="contact-card mt-8">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">Email</p>
+                  <p className="mt-3 text-2xl font-semibold text-white">kenrickles@gmail.com</p>
+                </div>
+                <a
+                  href="mailto:kenrickles@gmail.com"
+                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)]"
+                >
+                  Send a note →
+                </a>
+              </motion.div>
+            </motion.section>
+
+            <footer className="pt-6 text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">
+              Built with Next.js · Design inspired by Brittany Chiang
+            </footer>
           </div>
         </div>
-      </section>
-
-      <footer className="section-shell border-t border-white/10 px-6 py-10 text-center text-xs uppercase tracking-[0.28em] text-white/40">
-        © 2026 Kenrick. Systems engineering for resilient products.
-      </footer>
+      </div>
     </main>
   );
 }
