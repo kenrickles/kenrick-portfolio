@@ -3,23 +3,24 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0b0d10;
-  --fg: #f7f7f2;
-  --muted: #a1a1aa;
-  --border: #1f2937;
-  --surface: #11161d;
-  --surface-2: #0f141a;
-  --accent: #b6ff2b;
-  --accent-2: #ff6b00;
-  --grid: rgba(255, 255, 255, 0.05);
-  --shadow: rgba(0, 0, 0, 0.7);
+  --bg: #0a0d12;
+  --fg: #f5f6fb;
+  --muted: #99a2b4;
+  --border: rgba(255, 255, 255, 0.08);
+  --surface: rgba(10, 14, 22, 0.76);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --accent: #86b8ff;
+  --accent-2: #f0c1ff;
+  --accent-3: #7ef0d6;
+  --grid: rgba(255, 255, 255, 0.06);
+  --shadow: rgba(6, 10, 20, 0.55);
 }
 
 [data-theme='light'] {
   --bg: #f7f6f3;
   --fg: #0a0a0a;
   --muted: #404040;
-  --border: #111111;
+  --border: rgba(0, 0, 0, 0.12);
   --surface: #ffffff;
   --surface-2: #f0efe9;
   --grid: rgba(0, 0, 0, 0.08);
@@ -35,15 +36,115 @@ body {
   color-scheme: light dark;
   background-color: var(--bg);
   background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 120px 120px;
+    radial-gradient(circle at 15% 10%, rgba(113, 164, 255, 0.16), transparent 45%),
+    radial-gradient(circle at 85% 12%, rgba(240, 193, 255, 0.14), transparent 46%),
+    radial-gradient(circle at 40% 75%, rgba(126, 240, 214, 0.12), transparent 50%),
+    linear-gradient(180deg, rgba(8, 10, 16, 0.98), rgba(11, 16, 26, 0.9) 45%, rgba(8, 10, 16, 0.98));
   color: var(--fg);
 }
 
 h1, h2, h3, h4, h5 {
   font-family: var(--font-display), ui-sans-serif, system-ui;
   letter-spacing: -0.01em;
+}
+
+a {
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.page-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.page-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(transparent 98%, rgba(255, 255, 255, 0.04) 100%),
+    linear-gradient(90deg, transparent 98%, rgba(255, 255, 255, 0.04) 100%);
+  background-size: 160px 160px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 60% 20%, rgba(134, 184, 255, 0.12), transparent 55%);
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--surface);
+  box-shadow: 0 30px 90px rgba(5, 8, 16, 0.45);
+  backdrop-filter: blur(18px);
+}
+
+.card-surface {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  box-shadow: 0 26px 70px rgba(6, 10, 20, 0.35);
+}
+
+.kicker {
+  font-size: 11px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(245, 246, 251, 0.55);
+}
+
+.pill {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  border-radius: 999px;
+  background: #f5f6fb;
+  color: #0a0d12;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  font-size: 12px;
+}
+
+.btn-secondary {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: rgba(245, 246, 251, 0.8);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  font-size: 12px;
+}
+
+.section-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metric-block {
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  padding-left: 18px;
 }
 
 /* Custom scrollbar */
@@ -84,9 +185,9 @@ h1, h2, h3, h4, h5 {
 
 /* Accent text */
 .gradient-text {
-  color: var(--accent);
-  background: none;
-  -webkit-text-fill-color: currentColor;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 /* Glow effects (disabled for brutalism) */
