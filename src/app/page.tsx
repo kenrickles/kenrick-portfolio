@@ -6,67 +6,123 @@ import CustomCursor from '@/components/CustomCursor';
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Education', href: '#education' },
+  { label: 'Recognition', href: '#recognition' },
   { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ];
 
 const experiences = [
   {
-    timeframe: '2023 — Present',
-    role: 'Protocol Engineer',
-    company: 'Galaxy',
+    timeframe: 'May 2024 — Present',
+    role: 'SRE Specialist',
+    company: 'Prudential Singapore',
     location: 'Singapore',
     highlights: [
-      'Built reliable protocol services and tooling for AI-forward product teams.',
-      'Standardized Kubernetes reliability practices with SLO-driven rollouts.',
-      'Partnered with platform leaders to harden observability and incident response.',
+      'Led the migration from Bitbucket to GitHub Enterprise and standardized CI/CD across business lines.',
+      'Designed an MVP internal AI tooling suite with a custom MCP server integrating LLM automation into Jira and Confluence.',
+      'Co-led release management automation with ticket validation, dependency checks, and Jira-linked release gating.',
+      'Architected reusable GitHub Actions workflows with Docker, Helm, and GitOps-driven multi-environment releases.',
+      'Introduced secrets rotation, image scanning, Renovate automation, and static analysis tools (Checkmarx, Snyk, Codacy).',
+      'Mentored SRE/DevSecOps teams across SG/CN/IN/VN while aligning stakeholders in regulated environments.',
     ],
-    stack: ['Kubernetes', 'Go', 'Terraform', 'OpenTelemetry'],
+    stack: ['GitHub Actions', 'Docker', 'Kubernetes', 'Helm', 'Terraform', 'AWS'],
   },
   {
-    timeframe: '2020 — 2023',
-    role: 'Staff Infrastructure Engineer',
-    company: 'Nimbus Cloud',
+    timeframe: 'Mar 2023 — May 2024',
+    role: 'Senior DevSecOps Engineer',
+    company: 'Partior Pte Ltd',
     location: 'Singapore',
     highlights: [
-      'Designed multi-region infrastructure guardrails and automation pipelines.',
-      'Improved platform release confidence with policy-as-code and runtime checks.',
-      'Led reliability reviews for mission-critical services across APAC.',
+      'Containerized GoQuorum and 8 DApps, packaging hardened images for production.',
+      'Built Helm charts for GoQuorum and DApps, managing 7 Kubernetes environments with 40+ clusters.',
+      'Integrated HashiCorp Vault via External Secrets Operator and enforced mTLS/TLS across networks and apps.',
+      'Delivered end-to-end integration testing across seven release cycles.',
     ],
-    stack: ['AWS', 'Kubernetes', 'OPA', 'ArgoCD'],
+    stack: ['Kubernetes', 'Helm', 'Go', 'Vault', 'GCP'],
   },
   {
-    timeframe: '2017 — 2020',
-    role: 'Systems Engineer',
-    company: 'Arclight Labs',
+    timeframe: 'Feb 2022 — Feb 2023',
+    role: 'DevSecOps Engineer',
+    company: 'Partior Pte Ltd',
     location: 'Singapore',
     highlights: [
-      'Scaled real-time systems while maintaining 24/7 operational calm.',
-      'Delivered observability standards for logs, metrics, and tracing.',
-      'Built incident response playbooks and readiness drills.',
+      'Built DevOps automation for environment creation and management, reducing onboarding friction.',
+      'Co-developed a Go CLI to simplify client onboarding and improve self-service workflows.',
+      'Authored the Certification Practice Statement and streamlined Scope of Work, saving $125k.',
+      'Earned performance ratings: Overachieved (Jun 2022) and Significantly Overachieved (Dec 2022).',
     ],
-    stack: ['Kafka', 'Postgres', 'Grafana', 'Python'],
+    stack: ['Go', 'Terraform', 'Docker', 'Python'],
   },
+  {
+    timeframe: 'May 2021 — Feb 2022',
+    role: 'Associate Cloud Engineer',
+    company: 'Versent Singapore',
+    location: 'Singapore',
+    highlights: [
+      'Migrated CI/CD from Bamboo to Jenkins for 250 projects and delivered training enablement.',
+      'Led technical debt analysis and remediation across 38 issues.',
+      'Troubleshot Azure DevOps pipelines and delivered a Prometheus/Grafana/Thanos + ArgoCD POC.',
+    ],
+    stack: ['Jenkins', 'Bamboo', 'Azure', 'Prometheus', 'ArgoCD'],
+  },
+];
+
+const metrics = [
+  { value: '5+ Years', label: 'SRE & DevSecOps' },
+  { value: '40+ Clusters', label: 'Across 7 Environments' },
+  { value: '250 Projects', label: 'CI/CD Migration' },
+  { value: 'Multi-Region', label: 'Release Orchestration' },
+];
+
+const education = [
+  {
+    timeframe: 'Sep 2020 — Apr 2021',
+    program: 'Coding Bootcamp (Frontend, Backend, DSA)',
+    school: 'Rocket Academy',
+    location: 'Singapore',
+    highlights: ['Full-stack product delivery with modern web stacks.'],
+  },
+  {
+    timeframe: 'Aug 2015 — Jan 2020',
+    program: 'Bachelor of Social Science (Psychology & Communications), High Merit',
+    school: 'Singapore Management University',
+    location: 'Singapore',
+    highlights: [
+      'IE University exchange (Jan — May 2018).',
+      'Ho See Beng Scholarship (2017).',
+    ],
+  },
+];
+
+const awards = [
+  'Ho See Beng Scholarship (2017)',
+  'Commissioner of Police Commendation',
+  'Certified Kubernetes Administrator (CKA)',
 ];
 
 const projects = [
   {
-    name: 'Atlas Control Plane',
-    description: 'Unified platform for provisioning, securing, and observing multi-region clusters.',
-    impact: ['43% faster environment spin-up', '99.97% service availability', 'Infra spend -18% YoY'],
-    stack: ['Go', 'Kubernetes', 'Terraform', 'OPA'],
+    name: 'Release Orchestration Hub',
+    description: 'Release engineering backbone for regulated financial platforms with GitOps gating.',
+    impact: [
+      'Multi-region release flows with Jira-linked validation',
+      'Reusable GitHub Actions templates across business lines',
+      'Automated dependency checks and deployment approvals',
+    ],
+    stack: ['GitHub Actions', 'Helm', 'Terraform', 'AWS'],
   },
   {
-    name: 'SignalForge Observability',
-    description: 'Telemetry pipeline that normalizes logs, metrics, and traces across hybrid infra.',
-    impact: ['12TB/day ingest', 'p99 query latency 1.6s', 'Automated anomaly routing'],
-    stack: ['ClickHouse', 'OpenTelemetry', 'Kafka', 'Grafana'],
+    name: 'Cluster Lifecycle Platform',
+    description: 'Kubernetes platform enabling secure, repeatable environments for blockchain networks.',
+    impact: ['40+ clusters across 7 environments', 'Helm-packaged GoQuorum + 8 DApps', 'mTLS + TLS enforced'],
+    stack: ['Kubernetes', 'Helm', 'Vault', 'GCP'],
   },
   {
-    name: 'Helix AI Tooling',
-    description: 'Internal agent framework with guardrails, eval suites, and secure data connectors.',
-    impact: ['34% reduction in manual ops tasks', 'LLM safety score 0.91', '40+ workflows onboarded'],
-    stack: ['Python', 'FastAPI', 'Postgres', 'LLM APIs'],
+    name: 'DX Onboarding Toolkit',
+    description: 'Developer experience toolkit for faster client onboarding and environment setup.',
+    impact: ['Go CLI for guided onboarding', 'Automation for environment creation', 'Integration testing across 7 releases'],
+    stack: ['Go', 'Python', 'Docker', 'Postgres'],
   },
 ];
 
@@ -155,10 +211,11 @@ export default function Home() {
                 <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--muted)]">Portfolio</p>
                 <h1 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">Kenrick Tan</h1>
                 <p className="mt-3 text-lg text-[color:var(--accent)]">
-                  Protocol Engineer at Galaxy
+                  SRE Specialist at Prudential Singapore
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-[color:var(--muted)]">
-                  I build calm, resilient infrastructure for AI-forward teams.
+                  SRE and DevSecOps specialist focused on regulated financial environments, release engineering,
+                  and pragmatic AI tooling.
                 </p>
               </motion.div>
 
@@ -247,16 +304,16 @@ export default function Home() {
               <motion.div variants={fadeInItem} className="space-y-6">
                 <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">About</p>
                 <h2 className="text-3xl font-semibold text-white sm:text-4xl">
-                  Calm precision for resilient infrastructure.
+                  Calm precision for regulated platforms.
                 </h2>
                 <p className="text-sm leading-relaxed text-[color:var(--muted)]">
-                  I design infrastructure reliability systems, Kubernetes platforms, and AI tooling that
-                  make operations feel steady. I care about platform engineering that reduces chaos,
-                  creates observability you can trust, and gives teams more room to ship.
+                  I build SRE and DevSecOps systems for regulated financial environments, focused on release
+                  engineering, automation, and reliability. My work blends GitOps, CI/CD, and Kubernetes
+                  platforms with secure-by-default workflows that help teams ship with confidence.
                 </p>
                 <p className="text-sm leading-relaxed text-[color:var(--muted)]">
-                  I’m currently at Galaxy in Singapore, partnering with product and platform leaders to
-                  build calm, resilient systems. You can find more work on my{' '}
+                  I’m currently at Prudential Singapore, partnering with product, security, and platform
+                  teams to deliver dependable release pipelines and internal AI tooling. You can find more work on my{' '}
                   <a className="text-link" href="https://github.com/kenrickles" target="_blank" rel="noreferrer">
                     GitHub
                   </a>{' '}
@@ -266,9 +323,25 @@ export default function Home() {
                   </a>.
                 </p>
                 <p className="text-sm leading-relaxed text-[color:var(--muted)]">
-                  My focus spans infrastructure reliability, Kubernetes, platform engineering, and AI tooling
-                  for fast-growing teams that need measurable operational clarity.
+                  Certified Kubernetes Administrator (CKA) with a focus on multi-cloud delivery, secure
+                  automation, and release confidence across business lines.
                 </p>
+                <p className="text-sm leading-relaxed text-[color:var(--muted)]">
+                  Languages: English, Mandarin (fluent), Cantonese (proficient), Spanish A1, learning Japanese.
+                  Interests include blockchain networks (EVM L2s, dApps, testnets) and applied AI/LLMs.
+                </p>
+                <div className="glass-card">
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    {metrics.map((metric) => (
+                      <div key={metric.label} className="space-y-2">
+                        <p className="text-2xl font-semibold text-white">{metric.value}</p>
+                        <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
+                          {metric.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             </motion.section>
 
@@ -283,7 +356,7 @@ export default function Home() {
               <motion.div variants={fadeInItem} className="space-y-6">
                 <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Experience</p>
                 <h2 className="text-3xl font-semibold text-white sm:text-4xl">
-                  Building systems that earn trust.
+                  Building release confidence at scale.
                 </h2>
               </motion.div>
               <div className="mt-8 space-y-6">
@@ -327,6 +400,83 @@ export default function Home() {
             </motion.section>
 
             <motion.section
+              id="education"
+              className="section-block"
+              variants={fadeInContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <motion.div variants={fadeInItem} className="space-y-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Education</p>
+                <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+                  Foundations in systems and people.
+                </h2>
+              </motion.div>
+              <div className="mt-8 space-y-6">
+                {education.map((item) => (
+                  <motion.article
+                    key={item.program}
+                    variants={fadeInItem}
+                    className="timeline-item"
+                  >
+                    <div className="grid gap-6 sm:grid-cols-[120px_1fr]">
+                      <p className="text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">
+                        {item.timeframe}
+                      </p>
+                      <div className="space-y-4">
+                        <div>
+                          <h3 className="text-xl font-semibold text-white">
+                            {item.program}
+                          </h3>
+                          <p className="text-sm text-[color:var(--muted)]">
+                            {item.school} · {item.location}
+                          </p>
+                        </div>
+                        <ul className="space-y-2 text-sm text-[color:var(--muted)]">
+                          {item.highlights.map((highlight) => (
+                            <li key={highlight} className="flex items-start gap-2">
+                              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              id="recognition"
+              className="section-block"
+              variants={fadeInContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <motion.div variants={fadeInItem} className="space-y-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
+                  Recognition
+                </p>
+                <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+                  Awards and credentials.
+                </h2>
+              </motion.div>
+              <motion.div variants={fadeInItem} className="mt-8 glass-card">
+                <ul className="space-y-3 text-sm text-[color:var(--muted)]">
+                  {awards.map((award) => (
+                    <li key={award} className="flex items-start gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
+                      <span>{award}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </motion.section>
+
+            <motion.section
               id="projects"
               className="section-block"
               variants={fadeInContainer}
@@ -337,7 +487,7 @@ export default function Home() {
               <motion.div variants={fadeInItem} className="space-y-6">
                 <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Projects</p>
                 <h2 className="text-3xl font-semibold text-white sm:text-4xl">
-                  Calm systems shipped at scale.
+                  Systems shipped for reliability.
                 </h2>
               </motion.div>
               <motion.div
