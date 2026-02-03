@@ -72,6 +72,37 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             </ul>
           </div>
 
+          {study.metrics && (
+            <div className="glass-card p-8">
+              <h2 className="text-2xl font-semibold">Metrics</h2>
+              <p className="text-[color:var(--muted)] mt-2 text-sm">Before → After comparison</p>
+              <div className="mt-4 grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)] mb-4">Before</h3>
+                  <dl className="space-y-3">
+                    {Object.entries(study.metrics.before).map(([key, value]) => (
+                      <div key={key} className="flex justify-between items-center py-2 border-b border-[color:var(--border)]">
+                        <dt className="text-sm text-[color:var(--muted)] capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</dt>
+                        <dd className="text-sm font-semibold">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)] mb-4">After</h3>
+                  <dl className="space-y-3">
+                    {Object.entries(study.metrics.after).map(([key, value]) => (
+                      <div key={key} className="flex justify-between items-center py-2 border-b border-[color:var(--border)]">
+                        <dt className="text-sm text-[color:var(--muted)] capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</dt>
+                        <dd className="text-sm font-semibold text-[color:var(--accent)]">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="glass-card p-8">
             <h2 className="text-2xl font-semibold">Stack</h2>
             <div className="mt-4 flex flex-wrap gap-2">
