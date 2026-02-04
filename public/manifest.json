@@ -1,0 +1,16 @@
+{
+  "name": "Kenrick Tan Portfolio",
+  "short_name": "Kenrick Tan",
+  "description": "SRE Specialist at Prudential Singapore. Building calm, resilient infrastructure for regulated financial platforms.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0b",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/kenrick.jpg",
+      "sizes": "800x800",
+      "type": "image/jpeg"
+    }
+  ]
+}

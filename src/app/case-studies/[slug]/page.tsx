@@ -1,10 +1,38 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import ArchitectureDiagram from '@/components/ArchitectureDiagram';
 import { caseStudies, getCaseStudy } from '@/lib/caseStudies';
 
+const SITE_URL = "https://kenrickles.github.io/kenrick-portfolio";
+
 export async function generateStaticParams() {
   return caseStudies.map((study) => ({ slug: study.slug }));
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const study = getCaseStudy(params.slug);
+  if (!study) {
+    return {
+      title: "Case Study Not Found",
+    };
+  }
+
+  return {
+    title: study.title,
+    description: study.summary,
+    openGraph: {
+      title: `${study.title} | Kenrick Tan`,
+      description: study.summary,
+      url: `${SITE_URL}/case-studies/${study.slug}`,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${study.title} | Kenrick Tan`,
+      description: study.summary,
+    },
+  };
 }
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
