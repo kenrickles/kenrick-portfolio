@@ -203,9 +203,9 @@ export default function Home() {
   return (
     <main className="site-shell">
       <CustomCursor />
-      <div className="mx-auto w-full max-w-6xl px-6 py-12 lg:py-20">
-        <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
-          <aside className="flex flex-col gap-10 lg:sticky lg:top-16 lg:h-[calc(100vh-8rem)]">
+      <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-12 lg:py-20">
+        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
+          <aside className="flex flex-col gap-6 lg:gap-10 lg:sticky lg:top-16 lg:h-[calc(100vh-8rem)]">
             <motion.div variants={fadeInContainer} initial="hidden" animate="show" className="space-y-6">
               <motion.div variants={fadeInItem}>
                 <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--muted)]">Portfolio</p>
@@ -219,7 +219,7 @@ export default function Home() {
                 </p>
               </motion.div>
 
-              <motion.nav variants={fadeInItem} className="flex flex-col gap-3" aria-label="Primary">
+              <motion.nav variants={fadeInItem} className="flex flex-col gap-2 sm:gap-3" aria-label="Primary">
                 {navLinks.map((link) => (
                   <a key={link.href} href={link.href} className="nav-link">
                     {link.label}
@@ -229,7 +229,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={fadeInContainer} initial="hidden" animate="show" className="mt-auto">
-              <motion.div variants={fadeInItem} className="flex flex-row gap-3 lg:flex-col">
+              <motion.div variants={fadeInItem} className="flex flex-row gap-2 sm:gap-3 lg:flex-col">
                 <a
                   className="social-link"
                   href="https://github.com/kenrickles"
@@ -366,7 +366,7 @@ export default function Home() {
                     variants={fadeInItem}
                     className="timeline-item"
                   >
-                    <div className="grid gap-6 sm:grid-cols-[120px_1fr]">
+                    <div className="grid gap-4 gap-x-6 sm:grid-cols-[120px_1fr]">
                       <p className="text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">
                         {item.timeframe}
                       </p>
@@ -420,7 +420,7 @@ export default function Home() {
                     variants={fadeInItem}
                     className="timeline-item"
                   >
-                    <div className="grid gap-6 sm:grid-cols-[120px_1fr]">
+                    <div className="grid gap-4 gap-x-6 sm:grid-cols-[120px_1fr]">
                       <p className="text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">
                         {item.timeframe}
                       </p>

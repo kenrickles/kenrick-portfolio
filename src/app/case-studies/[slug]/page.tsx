@@ -41,7 +41,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
   return (
     <main className="min-h-screen">
-      <div className="max-w-4xl mx-auto px-6 py-24">
+      <div className="max-w-4xl mx-auto px-4 py-16 sm:px-6 sm:py-20 md:py-24">
         <Link href="/" className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
           ← Back to home
         </Link>
@@ -52,9 +52,9 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <p className="text-lg text-[color:var(--muted)]">{study.subtitle}</p>
         </div>
 
-        <div className="mt-10 glass-card p-8 space-y-6">
-          <p className="text-[color:var(--muted)] text-lg">{study.summary}</p>
-          <div className="grid md:grid-cols-3 gap-4">
+        <div className="mt-10 glass-card p-6 sm:p-8 space-y-6">
+          <p className="text-[color:var(--muted)] text-base sm:text-lg">{study.summary}</p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
             {study.impact.map((item) => (
               <div key={item} className="border-2 border-[color:var(--border)] p-4">
                 <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--muted)]">Impact</p>
@@ -64,9 +64,9 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </div>
         </div>
 
-        <div className="mt-10 grid gap-8">
-          <div className="glass-card p-8">
-            <h2 className="text-2xl font-semibold">Problem</h2>
+        <div className="mt-10 grid gap-6 sm:gap-8">
+          <div className="glass-card p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-semibold">Problem</h2>
             <p className="text-[color:var(--muted)] mt-4">{study.problem}</p>
           </div>
 
@@ -76,8 +76,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             edges={study.diagram.edges}
           />
 
-          <div className="glass-card p-8">
-            <h2 className="text-2xl font-semibold">Approach</h2>
+          <div className="glass-card p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-semibold">Approach</h2>
             <ul className="mt-4 space-y-3 text-[color:var(--muted)]">
               {study.approach.map((item) => (
                 <li key={item} className="flex items-start gap-3">
@@ -88,8 +88,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             </ul>
           </div>
 
-          <div className="glass-card p-8">
-            <h2 className="text-2xl font-semibold">Outcomes</h2>
+          <div className="glass-card p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-semibold">Outcomes</h2>
             <ul className="mt-4 space-y-3 text-[color:var(--muted)]">
               {study.outcomes.map((item) => (
                 <li key={item} className="flex items-start gap-3">
@@ -101,8 +101,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </div>
 
           {study.metrics && (
-            <div className="glass-card p-8">
-              <h2 className="text-2xl font-semibold">Metrics</h2>
+            <div className="glass-card p-6 sm:p-8">
+              <h2 className="text-xl sm:text-2xl font-semibold">Metrics</h2>
               <p className="text-[color:var(--muted)] mt-2 text-sm">Before → After comparison</p>
               <div className="mt-4 grid md:grid-cols-2 gap-6">
                 <div>
@@ -131,8 +131,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             </div>
           )}
 
-          <div className="glass-card p-8">
-            <h2 className="text-2xl font-semibold">Stack</h2>
+          <div className="glass-card p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-semibold">Stack</h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {study.stack.map((tech) => (
                 <span key={tech} className="px-3 py-1 border-2 border-[color:var(--border)] text-xs uppercase tracking-[0.3em]">
